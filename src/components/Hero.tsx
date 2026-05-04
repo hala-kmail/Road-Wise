@@ -33,7 +33,7 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
     <section 
       ref={containerRef}
       id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white px-6 pt-24 pb-12"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white px-6 pt-28 pb-12"
     >
       {/* GRID PATTERN BACKGROUND */}
       <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#353535 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
@@ -70,7 +70,7 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
               </span>
             </motion.div>
 
-            <div className="mb-10">
+            <div className="sm:mb-10 mb-8">
               <div className="flex flex-wrap gap-x-4 gap-y-0">
                 {words.map((word, idx) => (
                   <div key={idx} className="overflow-hidden py-1">
@@ -82,7 +82,7 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
                         duration: 0.7, 
                         ease: [0.33, 1, 0.68, 1] 
                       }}
-                      className="block text-5xl sm:text-6xl md:text-8xl font-black text-dark tracking-tighter leading-[0.95]"
+                      className="block text-4xl sm:text-6xl md:text-8xl font-black text-dark tracking-tighter leading-[0.95]"
                     >
                       {word}
                     </motion.span>
@@ -95,7 +95,7 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6, duration: 1 }}
-              className="text-lg md:text-xl text-dark/60 font-medium max-w-xl leading-relaxed mb-12"
+              className="text-lg sm:text-xl text-dark/60 font-medium max-w-xl leading-relaxed sm:mb-12 mb-8"
             >
               {t.tagline}
             </motion.p>

@@ -8,6 +8,11 @@ export const content = {
       clients: "Clients",
       contact: "Contact",
     },
+    site: {
+      documentTitle: "Road Wise for Consulting",
+      wordmarkLine1: "Road Wise",
+      wordmarkLine2: "for Consulting",
+    },
     hero: {
       title: "Road Wise for Consulting",
       tagline: "It's not about ideas; it's about making ideas happen",
@@ -115,6 +120,11 @@ export const content = {
       team: "فريقنا",
       clients: "عملاؤنا",
       contact: "اتصل بنا",
+    },
+    site: {
+      documentTitle: "رودوايز للخدمات الاستشارية",
+      wordmarkLine1: "رودوايز",
+      wordmarkLine2: "للخدمات الاستشارية",
     },
     hero: {
       title: "رودوايز للخدمات الاستشارية",

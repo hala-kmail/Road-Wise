@@ -32,7 +32,7 @@ export const Services: React.FC<ServicesProps> = ({ lang }) => {
   return (
     <section id="services" className="py-24 bg-bg-card px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-16">
+        <div className="flex flex-col md:flex-row sm:items-end items-start justify-between gap-8 mb-16">
           <div className="text-start">
             <motion.h2 
               initial={{ opacity: 0, x: -20 }}

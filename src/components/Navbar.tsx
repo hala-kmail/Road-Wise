@@ -3,6 +3,7 @@ import { Menu, X, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { content } from '../lib/constants';
+import brandLogo from '../assets/logo.png';
 
 interface NavbarProps {
   lang: 'en' | 'ar';
@@ -12,7 +13,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const t = content[lang].nav;
+  const t = content[lang];
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -20,32 +21,52 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   const navLinks = [
-    { name: t.home, href: '#home' },
-    { name: t.about, href: '#about' },
-    { name: t.services, href: '#services' },
-    { name: t.team, href: '#team' },
-    { name: t.contact, href: '#contact' },
+    { name: t.nav.home, href: '#home' },
+    { name: t.nav.about, href: '#about' },
+    { name: t.nav.services, href: '#services' },
+    { name: t.nav.team, href: '#team' },
+    { name: t.nav.contact, href: '#contact' },
   ];
 
   return (
-    <nav className={cn(
-      "fixed top-4 md:top-6 left-0 right-0 z-50 transition-all duration-500",
-      isScrolled ? "translate-y-[-0.5rem]" : ""
-    )}>
-      <div className="max-w-7xl mx-auto px-6">
+    <nav className="fixed top-3 sm:top-4 md:top-6 left-0 right-0 z-50 px-3 sm:px-4 md:px-6">
+      {/*
+        Scroll offset lives only on this wrapper — not on <nav>. A transformed ancestor breaks
+        `position: fixed` for the mobile panel (it clips to the bar). The menu stays a sibling below.
+      */}
+      <div
+        className={cn(
+          'max-w-7xl mx-auto transition-transform duration-500',
+          isScrolled ? 'translate-y-[-0.25rem] md:translate-y-[-0.5rem]' : ''
+        )}
+      >
         <div className={cn(
-          "glass rounded-2xl px-6 py-2.5 flex items-center justify-between border border-black/5 shadow-2xl transition-all duration-500",
+          "glass rounded-2xl px-3 py-2 sm:px-5 sm:py-2.5 md:px-6 flex items-center justify-between gap-2 sm:gap-3 border border-black/5 shadow-2xl transition-all duration-500 min-w-0",
           isScrolled ? "bg-white/95" : "bg-white/80"
         )}>
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 bg-primary rounded-xl flex items-center justify-center text-white font-black group-hover:rotate-12 transition-transform text-xs">
-              RW
+          <a href="#home" className="flex items-center gap-2 sm:gap-3 group min-w-0 flex-1 pr-1">
+            <img
+              src={brandLogo}
+              alt={t.site.documentTitle}
+              className="h-8 w-auto max-h-8 max-w-[2.25rem] sm:max-h-9 sm:max-w-[2.75rem] md:h-12 md:max-h-12 md:max-w-none object-contain shrink-0 rounded-full drop-shadow-[0_4px_12px_rgba(47,159,157,0.2)] group-hover:opacity-90 transition-opacity"
+            />
+            <div className="min-w-0 flex-1">
+              <h3 className="font-black text-base sm:text-lg md:text-2xl tracking-tighter leading-tight text-dark truncate">{t.site.wordmarkLine1}</h3>
+              <p className={cn('text-[9px] sm:text-[10px] font-black text-dark/30 tracking-wide sm:tracking-[0.3em] truncate', lang === 'en' && 'uppercase')}>{t.site.wordmarkLine2}</p>
             </div>
-            <span className="text-sm font-black text-dark tracking-tighter uppercase">
-              RoadWise
-            </span>
           </a>
 
           {/* Desktop Nav */}
@@ -67,7 +88,8 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
             
             <div className="w-px h-5 bg-dark/10" />
 
-            <button 
+            <button
+              type="button"
               onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
               className="px-3 py-1.5 bg-dark text-white rounded-lg text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-colors flex items-center gap-2"
             >
@@ -77,39 +99,49 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
           </div>
 
           {/* Mobile Toggle */}
-          <div className="flex md:hidden items-center gap-4">
-            <button 
+          <div className="flex md:hidden items-center shrink-0 gap-1.5">
+            <button
+              type="button"
               onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
-              className="p-2 glass rounded-full"
+              className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center glass rounded-full touch-manipulation"
+              aria-label={lang === 'en' ? 'العربية' : 'English'}
             >
-              <Globe className="w-5 h-5 text-dark" />
+              <Globe className="w-5 h-5 text-dark shrink-0" />
             </button>
-            <button 
+            <button
+              type="button"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 glass rounded-full text-dark"
+              className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center glass rounded-full text-dark touch-manipulation"
+              aria-expanded={isMenuOpen}
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMenuOpen ? <X className="w-6 h-6 shrink-0" /> : <Menu className="w-6 h-6 shrink-0" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu — sibling of transformed bar wrapper so fixed covers the viewport */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            className="fixed inset-0 top-[88px] z-40 bg-white/95 backdrop-blur-3xl md:hidden overflow-y-auto border-t border-black/5"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-x-0 bottom-0 z-[60] md:hidden bg-white/98 backdrop-blur-3xl border-t border-black/5 overflow-y-auto overscroll-contain"
+            style={{
+              top: 'max(5rem, calc(env(safe-area-inset-top, 0px) + 4.25rem))',
+              paddingBottom: 'max(1.25rem, env(safe-area-inset-bottom, 0px))',
+            }}
           >
-            <div className="p-8 space-y-6">
+            <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 space-y-1">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block text-4xl font-black text-dark hover:text-primary transition-colors tracking-tighter"
+                  className="block py-3.5 px-2 text-xl sm:text-3xl font-black text-dark hover:text-primary active:text-primary transition-colors tracking-tighter rounded-xl hover:bg-primary/5"
                 >
                   {link.name}
                 </a>

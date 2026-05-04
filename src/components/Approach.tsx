@@ -11,7 +11,7 @@ export const Approach: React.FC<ApproachProps> = ({ lang }) => {
   const t = content[lang].approach;
 
   return (
-    <section id="approach" className="py-24 bg-white px-6">
+    <section id="approach" className="sm:py-24 py-16 bg-white px-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-16 items-start">
           <div className="lg:w-1/3">

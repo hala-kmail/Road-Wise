@@ -37,7 +37,7 @@ export const Team: React.FC<TeamProps> = ({ lang }) => {
   };
 
   return (
-    <section id="team" className="py-24 bg-white overflow-hidden">
+    <section id="team" className="sm:py-24 py-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-12">
         <div className="flex items-center justify-between gap-8 mb-12">
           <div className="text-start">

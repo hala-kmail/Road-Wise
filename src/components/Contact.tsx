@@ -50,11 +50,11 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-white px-6">
+    <section id="contact" className="sm:py-24 py-16 bg-white px-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-8 items-stretch">
           {/* Left Panel - Info */}
-          <div className="lg:w-1/3 bg-primary p-12 rounded-[2.5rem] text-white relative overflow-hidden flex flex-col justify-center">
+          <div className="lg:w-1/3 bg-primary sm:p-12 p-6 rounded-[2.5rem] text-white relative overflow-hidden flex flex-col justify-center">
              <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10 pointer-events-none">
                 <motion.div 
                   animate={{ rotate: 360 }}
@@ -121,7 +121,7 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
           </div>
 
           {/* Right Panel - Form */}
-          <div className="lg:w-2/3 bg-bg-card p-12 rounded-[2.5rem] border border-black/5 flex flex-col">
+          <div className="lg:w-2/3 bg-bg-card sm:p-12 p-6 rounded-[2.5rem] border border-black/5 flex flex-col">
             <motion.div
                initial={{ opacity: 0, y: 20 }}
                whileInView={{ opacity: 1, y: 0 }}

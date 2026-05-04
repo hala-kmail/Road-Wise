@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, useInView } from 'motion/react';
 import { content } from '../lib/constants';
+import { getPartnerLogoMarqueeSlides } from '../lib/partnerMarqueeSlides';
 import { cn } from '../lib/utils';
 import { ClipboardCheck, Calendar, MapPin, Languages, Trophy, Users, Globe } from 'lucide-react';
 
@@ -32,12 +33,12 @@ const Counter: React.FC<{ value: number; isYear?: boolean; prefix?: string }> = 
 
 export const About: React.FC<AboutProps> = ({ lang }) => {
   const t = content[lang].about;
-  const c = content[lang].clients;
+  const partnerSlides = getPartnerLogoMarqueeSlides(lang);
   
   return (
-    <section id="about" className="py-32 bg-white px-6 relative">
+    <section id="about" className="sm:py-32 py-16 bg-white px-6 relative">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-20">
+        <div className="text-center sm:mb-20 mb-10">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -85,7 +86,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
             transition={{ delay: 0.1 }}
             className="md:col-span-2 lg:col-span-2 bento-item bg-white border-t-8 border-primary shadow-lg"
           >
-            <Users className="w-8 h-8 text-primary/10 absolute -right-2 -top-2 scale-150" />
+            <Users className={`w-8 h-8 text-primary/10 absolute  ${lang === 'ar' ? 'left-8' : 'right-8'} scale-150`} />
             <div className="mb-6">
               <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white font-black mb-4">
                 MZ
@@ -231,11 +232,16 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
                  "flex py-2 gap-8 whitespace-nowrap",
                  lang === 'ar' ? "animate-marquee-fast-rtl" : "animate-marquee-fast"
                )}>
-                  {c.partners.concat(c.partners).map((p, i) => (
-                    <span key={i} className="text-xl font-black text-dark/10 hover:text-primary transition-colors cursor-default uppercase">
-                      {p}
-                    </span>
-                  ))}
+                  {partnerSlides.concat(partnerSlides).map((slide, i) => (
+                      <span key={i} className="inline-flex items-center shrink-0">
+                        <img
+                          src={slide.src}
+                          alt={slide.alt}
+                          className="max-h-10 max-w-[140px] w-auto object-contain opacity-40 hover:opacity-80 transition-opacity"
+                        />
+                      </span>
+                    )
+                  )}
                </div>
             </div>
           </motion.div>

@@ -1,5 +1,7 @@
 import React from 'react';
 import { content } from '../lib/constants';
+import { cn } from '../lib/utils';
+import brandLogo from '../assets/logo.png';
 import { Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 
 interface FooterProps {
@@ -10,18 +12,20 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
   const t = content[lang];
   
   return (
-    <footer className="bg-white text-dark pt-32 pb-16 px-6 border-t border-black/5">
+    <footer className="bg-white text-dark sm:pt-32 pt-16 sm:pb-16 pb-8 px-6 border-t border-black/5">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-24">
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-white font-black text-xl shadow-[0_5px_15px_rgba(47,159,157,0.3)]">
-                RW
-              </div>
+              <img
+                src={brandLogo}
+                alt={t.site.documentTitle}
+                className="h-14 w-auto max-h-14 object-contain shrink-0 drop-shadow-[0_4px_12px_rgba(47,159,157,0.2)] rounded-full"
+              />
               <div>
-                 <h3 className="font-black text-2xl tracking-tighter leading-none text-dark">RoadWise</h3>
-                 <p className="text-[10px] font-black text-dark/30 uppercase tracking-[0.3em]">Consulting</p>
+                 <h3 className="font-black text-2xl tracking-tighter leading-none text-dark">{t.site.wordmarkLine1}</h3>
+                 <p className={cn('text-[10px] font-black text-dark/30 tracking-[0.3em]', lang === 'en' && 'uppercase')}>{t.site.wordmarkLine2}</p>
               </div>
             </div>
             <p className="text-dark/40 text-sm leading-relaxed mb-10 max-w-xs font-medium">

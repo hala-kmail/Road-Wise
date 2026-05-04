@@ -1,18 +1,32 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { content } from '../lib/constants';
+import { getPartnerLogoMarqueeSlides } from '../lib/partnerMarqueeSlides';
 import { cn } from '../lib/utils';
 
 interface ClientsProps { lang: 'en' | 'ar'; }
 
 export const Clients: React.FC<ClientsProps> = ({ lang }) => {
   const t = content[lang].clients;
-  const half = Math.ceil(t.partners.length / 2);
-  const row1 = t.partners.slice(0, half);
-  const row2 = t.partners.slice(half);
+  const slides = getPartnerLogoMarqueeSlides(lang);
+  const half = Math.ceil(slides.length / 2);
+  const row1 = slides.slice(0, half);
+  const row2 = slides.slice(half);
+
+  const renderSlide = (slide: (typeof slides)[number], i: number) => {
+    return (
+      <div key={i} className="px-10 py-6 glass rounded-2xl border border-black/5 hover:border-primary/50 transition-colors flex items-center justify-center min-w-[200px] group cursor-default shadow-sm">
+        <img
+          src={slide.src}
+          alt={slide.alt}
+          className="max-h-12 max-w-[160px] w-auto object-contain opacity-50 group-hover:opacity-90 transition-opacity"
+        />
+      </div>
+    );
+  };
 
   return (
-    <section id="clients" className="py-32 bg-bg-card overflow-hidden">
+    <section id="clients" className="sm:py-32 py-16 bg-bg-card overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-20 text-center">
         <motion.h2 
            initial={{ opacity: 0, scale: 0.9 }}
@@ -32,11 +46,7 @@ export const Clients: React.FC<ClientsProps> = ({ lang }) => {
             "flex py-4 gap-8 whitespace-nowrap hover:pause transition-all",
             lang === 'ar' ? "animate-marquee-right" : "animate-marquee-left"
           )}>
-            {[...row1, ...row1, ...row1].map((p, i) => (
-              <div key={i} className="px-10 py-6 glass rounded-2xl border border-black/5 hover:border-primary/50 transition-colors flex items-center justify-center min-w-[200px] group cursor-default shadow-sm">
-                <span className="text-xl font-bold text-dark/30 group-hover:text-primary transition-colors">{p}</span>
-              </div>
-            ))}
+            {[...row1, ...row1, ...row1].map((slide, i) => renderSlide(slide, i))}
           </div>
         </div>
  
@@ -46,11 +56,7 @@ export const Clients: React.FC<ClientsProps> = ({ lang }) => {
             "flex py-4 gap-8 whitespace-nowrap hover:pause transition-all",
             lang === 'ar' ? "animate-marquee-left" : "animate-marquee-right"
           )}>
-            {[...row2, ...row2, ...row2].map((p, i) => (
-              <div key={i} className="px-10 py-6 glass rounded-2xl border border-black/5 hover:border-primary/50 transition-colors flex items-center justify-center min-w-[200px] group cursor-default shadow-sm">
-                 <span className="text-xl font-bold text-dark/30 group-hover:text-primary transition-colors">{p}</span>
-              </div>
-            ))}
+            {[...row2, ...row2, ...row2].map((slide, i) => renderSlide(slide, i))}
           </div>
         </div>
       </div>

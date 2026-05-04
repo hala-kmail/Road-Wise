@@ -15,6 +15,7 @@ import { Clients } from './components/Clients.tsx';
 import { Engagements } from './components/Engagements.tsx';
 import { Contact } from './components/Contact.tsx';
 import { Footer } from './components/Footer.tsx';
+import { content } from './lib/constants';
 
 export default function App() {
   const [lang, setLang] = useState<'en' | 'ar'>('en');
@@ -30,6 +31,7 @@ export default function App() {
   useEffect(() => {
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = lang;
+    document.title = content[lang].site.documentTitle;
   }, [lang]);
 
   useEffect(() => {

@@ -11,7 +11,7 @@ export const Engagements: React.FC<EngagementsProps> = ({ lang }) => {
   const icons = [Briefcase, Building2, Shield, FileSearch];
 
   return (
-    <section id="engagements" className="py-24 bg-white px-6 overflow-hidden">
+    <section id="engagements" className="sm:py-24 py-16 bg-white px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-16">
           <div className="text-start">
