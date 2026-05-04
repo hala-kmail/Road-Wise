@@ -1,0 +1,70 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useSpring } from 'motion/react';
+import { Navbar } from './components/Navbar.tsx';
+import { Hero } from './components/Hero.tsx';
+import { About } from './components/About.tsx';
+import { Services } from './components/Services.tsx';
+import { Approach } from './components/Approach.tsx';
+import { Team } from './components/Team.tsx';
+import { Clients } from './components/Clients.tsx';
+import { Engagements } from './components/Engagements.tsx';
+import { Contact } from './components/Contact.tsx';
+import { Footer } from './components/Footer.tsx';
+
+export default function App() {
+  const [lang, setLang] = useState<'en' | 'ar'>('en');
+  const cursorRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  useEffect(() => {
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
+  }, [lang]);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (cursorRef.current) {
+        cursorRef.current.style.left = `${e.clientX}px`;
+        cursorRef.current.style.top = `${e.clientY}px`;
+      }
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-bg-deep font-sans text-dark overflow-x-hidden selection:bg-primary/20 selection:text-primary scroll-smooth">
+      {/* Scroll Progress */}
+      <motion.div className="scroll-progress" style={{ scaleX }} />
+      
+      {/* Cursor Glow */}
+      <div ref={cursorRef} className="cursor-glow hidden md:block" />
+
+      <Navbar lang={lang} setLang={setLang} />
+      
+      <main>
+        <Hero lang={lang} />
+        <About lang={lang} />
+        <Services lang={lang} />
+        <Approach lang={lang} />
+        <Team lang={lang} />
+        <Clients lang={lang} />
+        <Engagements lang={lang} />
+        <Contact lang={lang} />
+      </main>
+
+      <Footer lang={lang} />
+    </div>
+  );
+}

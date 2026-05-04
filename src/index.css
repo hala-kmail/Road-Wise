@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #2f9f9d;
+  --color-primary-light: #48c5c3;
+  --color-secondary: #63296c;
+  --color-accent-blue: #25a0a4;
+  --color-accent-brown: #753e04;
+  --color-accent-red: #950d16;
+  --color-accent-yellow: #f8c02d;
+  --color-dark: #353535;
+  --color-bg-deep: #ffffff;
+  --color-bg-card: #f9fafb;
+
+  --font-sans: "Tajawal", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+  }
+  body {
+    @apply bg-bg-deep text-dark selection:bg-primary/20 selection:text-primary overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/60 backdrop-blur-xl border border-black/5 shadow-sm;
+  }
+  
+  .glass-card {
+    @apply bg-white border border-black/5 shadow-[0_4px_20px_rgb(0,0,0,0.02)] backdrop-blur-md hover:shadow-[0_8px_30px_rgb(0,0,0,0.05)] transition-all duration-300;
+  }
+
+  .bento-item {
+    @apply p-6 bg-white border border-black/5 shadow-[0_4px_20px_rgb(0,0,0,0.02)] backdrop-blur-md hover:shadow-[0_8px_30px_rgb(0,0,0,0.05)] transition-all duration-300 rounded-[2rem] relative overflow-hidden flex flex-col;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 15px rgba(47, 159, 157, 0.1);
+  }
+
+  .mask-fade-x {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+}
+
+/* Custom Cursor */
+.cursor-glow {
+  pointer-events: none;
+  position: fixed;
+  z-index: 9999;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(47, 159, 157, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+/* Scroll Progress */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-primary);
+  transform-origin: 0%;
+  z-index: 100;
+}
