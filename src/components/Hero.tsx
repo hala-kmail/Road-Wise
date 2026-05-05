@@ -133,8 +133,8 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-dark/30">Impact</span>
-                  <div className="px-2 py-1 bg-accent-blue/10 text-accent-blue text-[8px] font-black rounded-lg">VERIFIED</div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-dark/30">{lang === 'en' ? 'Impact' : 'الأثر'}</span>
+                  <div className="px-2 py-1 bg-accent-blue/10 text-accent-blue text-[8px] font-black rounded-lg">{lang === 'en' ? 'VERIFIED' : 'موثّق'}</div>
                 </div>
                 <div className="text-5xl font-black text-dark tracking-tighter mb-1">{t.stats[0].prefix}{t.stats[0].value}</div>
                 <p className="text-xs font-bold text-dark/40">{t.stats[0].label}</p>

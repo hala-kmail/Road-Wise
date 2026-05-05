@@ -83,7 +83,7 @@ export const Team: React.FC<TeamProps> = ({ lang }) => {
 
               <div className="mb-6 space-y-2">
                  <div className="flex items-center justify-between text-[10px] font-black uppercase text-dark/30">
-                    <span>Expertise</span>
+                    <span>{lang === 'en' ? 'Expertise' : 'الخبرة'}</span>
                     <span className="text-dark/50">{member.exp}</span>
                  </div>
                  <div className="flex flex-wrap gap-1">

@@ -36,25 +36,25 @@ export const Clients: React.FC<ClientsProps> = ({ lang }) => {
         >
           {t.title}
         </motion.h2>
-        <p className="text-dark/30 font-black tracking-widest uppercase text-xs">Our Strategic Global Partners</p>
+        <p className="text-dark/30 font-black tracking-widest uppercase text-xs">{lang === 'en' ? 'Our Strategic Global Partners' : 'شركاؤنا الاستراتيجيون العالميون'}</p>
       </div>
 
       <div className="space-y-8 relative">
         {/* Row 1 */}
-        <div className="flex overflow-hidden mask-fade-x">
+        <div className="flex overflow-hidden mask-fade-x" dir="ltr">
           <div className={cn(
             "flex py-4 gap-8 whitespace-nowrap hover:pause transition-all",
-            lang === 'ar' ? "animate-marquee-right" : "animate-marquee-left"
+            "animate-marquee-left"
           )}>
             {[...row1, ...row1, ...row1].map((slide, i) => renderSlide(slide, i))}
           </div>
         </div>
  
         {/* Row 2 */}
-        <div className="flex overflow-hidden mask-fade-x">
+        <div className="flex overflow-hidden mask-fade-x" dir="ltr">
           <div className={cn(
             "flex py-4 gap-8 whitespace-nowrap hover:pause transition-all",
-            lang === 'ar' ? "animate-marquee-left" : "animate-marquee-right"
+            "animate-marquee-right"
           )}>
             {[...row2, ...row2, ...row2].map((slide, i) => renderSlide(slide, i))}
           </div>

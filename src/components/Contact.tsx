@@ -168,7 +168,7 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
                       <Mail className="w-4 h-4" />
                     </div>
                     <div>
-                       <p className="text-[8px] font-black text-dark/30 uppercase leading-none mb-1">Email Details</p>
+                       <p className="text-[8px] font-black text-dark/30 uppercase leading-none mb-1">{lang === 'en' ? 'Email Details' : 'بيانات البريد الإلكتروني'}</p>
                        <p className="font-bold text-xs text-dark underline">info@roadwiseconsulting.com</p>
                     </div>
                  </div>
@@ -177,7 +177,7 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
                        <Globe className="w-4 h-4" />
                     </div>
                     <div>
-                       <p className="text-[8px] font-black text-dark/30 uppercase leading-none mb-1">Digital Presence</p>
+                       <p className="text-[8px] font-black text-dark/30 uppercase leading-none mb-1">{lang === 'en' ? 'Digital Presence' : 'الحضور الرقمي'}</p>
                        <p className="font-bold text-xs text-dark underline">www.roadwiseconsulting.com</p>
                     </div>
                  </div>

@@ -60,11 +60,11 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
             </h4>
             <ul className="space-y-6 text-dark/60 text-sm font-medium">
               <li className="flex flex-col gap-1">
-                <span className="text-[10px] font-black text-dark/20 uppercase tracking-widest">Main Office</span>
+                <span className="text-[10px] font-black text-dark/20 uppercase tracking-widest">{lang === 'en' ? 'Main Office' : 'المكتب الرئيسي'}</span>
                 <span className="font-bold text-dark/80">{t.contact.palestine.phone}</span>
               </li>
               <li className="flex flex-col gap-1">
-                <span className="text-[10px] font-black text-dark/20 uppercase tracking-widest">Regional Office</span>
+                <span className="text-[10px] font-black text-dark/20 uppercase tracking-widest">{lang === 'en' ? 'Regional Office' : 'المكتب الإقليمي'}</span>
                 <span className="font-bold text-dark/80">{t.contact.jordan.phone1}</span>
               </li>
               <li className="pt-2">
@@ -94,8 +94,8 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
             {t.footer.rights}
           </p>
           <div className="flex gap-8">
-             <a href="#" className="text-dark/20 text-[10px] font-black uppercase tracking-widest hover:text-dark transition-colors">Privacy Policy</a>
-             <a href="#" className="text-dark/20 text-[10px] font-black uppercase tracking-widest hover:text-dark transition-colors">Terms of Service</a>
+             <a href="#" className="text-dark/20 text-[10px] font-black uppercase tracking-widest hover:text-dark transition-colors">{lang === 'en' ? 'Privacy Policy' : 'سياسة الخصوصية'}</a>
+             <a href="#" className="text-dark/20 text-[10px] font-black uppercase tracking-widest hover:text-dark transition-colors">{lang === 'en' ? 'Terms of Service' : 'شروط الخدمة'}</a>
           </div>
         </div>
       </div>

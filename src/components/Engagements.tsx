@@ -24,7 +24,7 @@ export const Engagements: React.FC<EngagementsProps> = ({ lang }) => {
               {t.title}
             </motion.h2>
             <p className="text-dark/30 font-bold text-xs uppercase tracking-widest leading-none">
-               Impact across diverse sectors
+               {lang === 'en' ? 'Impact across diverse sectors' : 'أثر ممتد عبر قطاعات متنوعة'}
             </p>
           </div>
           <div className="h-px flex-1 bg-dark/5 hidden md:block" />
@@ -49,7 +49,7 @@ export const Engagements: React.FC<EngagementsProps> = ({ lang }) => {
                 <p className="text-dark/40 leading-relaxed text-xs font-bold mb-8">{item.desc}</p>
                 
                 <div className="mt-auto pt-6 border-t border-black/5 flex items-center justify-between">
-                  <span className="text-[9px] font-black uppercase tracking-widest text-accent-blue">Sector Analysis</span>
+                  <span className="text-[9px] font-black uppercase tracking-widest text-accent-blue">{lang === 'en' ? 'Sector Analysis' : 'تحليل القطاعات'}</span>
                   <div className="flex gap-1">
                      <div className="w-1.5 h-1.5 rounded-full bg-accent-blue/20" />
                      <div className="w-1.5 h-1.5 rounded-full bg-accent-blue" />

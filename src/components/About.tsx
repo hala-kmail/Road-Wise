@@ -62,7 +62,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
               <div className="w-4 h-1 bg-accent-blue rounded-full" />
               <div className="w-2 h-1 bg-accent-yellow rounded-full" />
             </div>
-            <h3 className="text-sm font-black uppercase tracking-widest text-primary mb-4">Our Foundation</h3>
+            <h3 className="text-sm font-black uppercase tracking-widest text-primary mb-4">{lang === 'en' ? 'Our Foundation' : 'أساسنا'}</h3>
             <p className="text-lg md:text-xl font-bold leading-tight text-dark mb-8">
               {t.description}
             </p>
@@ -70,7 +70,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
             <div className="mt-auto p-4 bg-accent-blue/5 rounded-2xl border border-accent-blue/10">
               <div className="flex items-center gap-2 mb-2">
                 <Globe className="w-4 h-4 text-accent-blue" />
-                <span className="text-[10px] font-black uppercase tracking-widest text-accent-blue">Geographic Coverage</span>
+                <span className="text-[10px] font-black uppercase tracking-widest text-accent-blue">{lang === 'en' ? 'Geographic Coverage' : 'التغطية الجغرافية'}</span>
               </div>
               <p className="text-xs font-bold text-dark/70 leading-relaxed">
                 {t.coverage}
@@ -91,9 +91,9 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
               <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white font-black mb-4">
                 MZ
               </div>
-              <h4 className="text-xs font-black uppercase tracking-widest text-primary mb-1">Leadership</h4>
+              <h4 className="text-xs font-black uppercase tracking-widest text-primary mb-1">{lang === 'en' ? 'Leadership' : 'القيادة'}</h4>
               <p className="text-xl font-black text-dark leading-none mb-1">{t.leadership.ceo}</p>
-              <p className="text-[10px] font-bold text-dark/40 uppercase tracking-widest">CEO & Senior Consultant</p>
+              <p className="text-[10px] font-bold text-dark/40 uppercase tracking-widest">{lang === 'en' ? 'CEO & Senior Consultant' : 'المدير التنفيذي والمستشار الأول'}</p>
             </div>
             <p className="text-[11px] leading-relaxed text-dark/60 font-medium italic">
               "{t.leadership.bio}"
@@ -112,7 +112,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
                <div className="w-8 h-8 bg-accent-blue/10 rounded-lg flex items-center justify-center">
                  <Trophy className="w-4 h-4 text-accent-blue" />
                </div>
-               <h4 className="text-sm font-black uppercase tracking-widest leading-none text-accent-blue">Vision</h4>
+               <h4 className="text-sm font-black uppercase tracking-widest leading-none text-accent-blue">{lang === 'en' ? 'Vision' : 'الرؤية'}</h4>
              </div>
              <p className="text-base font-bold leading-relaxed mb-6 text-dark">
                {t.vision}
@@ -134,7 +134,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
                <div className="w-8 h-8 bg-accent-yellow/10 rounded-lg flex items-center justify-center text-accent-yellow">
                  <ClipboardCheck className="w-4 h-4" />
                </div>
-               <h4 className="text-sm font-black uppercase tracking-widest text-dark leading-none">Mission</h4>
+               <h4 className="text-sm font-black uppercase tracking-widest text-dark leading-none">{lang === 'en' ? 'Mission' : 'الرسالة'}</h4>
              </div>
              <p className="text-base font-bold leading-relaxed text-dark/70">
                {t.mission}
@@ -171,8 +171,8 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
                    <MapPin className="w-4 h-4" />
                  </div>
                  <div>
-                   <p className="text-[8px] font-black uppercase text-dark/20 leading-none mb-1">Operational Hubs</p>
-                   <p className="text-sm font-black text-dark">Palestine / Jordan</p>
+                  <p className="text-[8px] font-black uppercase text-dark/20 leading-none mb-1">{lang === 'en' ? 'Operational Hubs' : 'مراكز التشغيل'}</p>
+                  <p className="text-sm font-black text-dark">{lang === 'en' ? 'Palestine / Jordan' : 'فلسطين / الأردن'}</p>
                  </div>
                </div>
                <div className="flex items-center gap-3">
@@ -180,8 +180,8 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
                    <Languages className="w-4 h-4" />
                  </div>
                  <div>
-                   <p className="text-[8px] font-black uppercase text-dark/20 leading-none mb-1">Communications</p>
-                   <p className="text-sm font-black text-dark">English / Arabic</p>
+                  <p className="text-[8px] font-black uppercase text-dark/20 leading-none mb-1">{lang === 'en' ? 'Communications' : 'لغة التواصل'}</p>
+                  <p className="text-sm font-black text-dark">{lang === 'en' ? 'English / Arabic' : 'العربية / الإنجليزية'}</p>
                  </div>
                </div>
              </div>
@@ -214,30 +214,30 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
 
           {/* Marquee/Partners (Wide) */}
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{  y: 20 }}
+            whileInView={{  y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.7 }}
             className="md:col-span-4 lg:col-span-6 bento-item bg-bg-card p-6 lg:p-8 border border-black/5"
           >
             <div className="flex items-center justify-between mb-6">
-               <p className="text-[9px] font-black text-dark/40 uppercase tracking-[0.3em]">Institutional Network</p>
+               <p className="text-[9px] font-black text-dark/40 uppercase tracking-[0.3em]">{lang === 'en' ? 'Institutional Network' : 'الشبكة المؤسسية'}</p>
                <div className="flex gap-1">
                   <div className="w-1.5 h-1.5 bg-primary rounded-full" />
                   <div className="w-1.5 h-1.5 bg-secondary rounded-full" />
                </div>
             </div>
-            <div className="flex overflow-hidden mask-fade-x">
+            <div className="flex overflow-hidden mask-fade-x" dir="ltr">
                <div className={cn(
                  "flex py-2 gap-8 whitespace-nowrap",
-                 lang === 'ar' ? "animate-marquee-fast-rtl" : "animate-marquee-fast"
+                 "animate-marquee-fast"
                )}>
                   {partnerSlides.concat(partnerSlides).map((slide, i) => (
                       <span key={i} className="inline-flex items-center shrink-0">
                         <img
                           src={slide.src}
                           alt={slide.alt}
-                          className="max-h-10 max-w-[140px] w-auto object-contain opacity-40 hover:opacity-80 transition-opacity"
+                          className="max-h-10 max-w-[140px] w-auto object-contain "
                         />
                       </span>
                     )
