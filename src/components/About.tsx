@@ -229,10 +229,9 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
             </div>
             <div className="flex overflow-hidden mask-fade-x" dir="ltr">
                <div className={cn(
-                 "flex py-2 gap-8 whitespace-nowrap",
-                 "animate-marquee-fast"
+                 "flex py-2 gap-8 whitespace-nowrap w-max will-change-transform animate-marquee-fast"
                )}>
-                  {partnerSlides.concat(partnerSlides).map((slide, i) => (
+                  {[...partnerSlides, ...partnerSlides, ...partnerSlides].map((slide, i) => (
                       <span key={i} className="inline-flex items-center shrink-0">
                         <img
                           src={slide.src}
@@ -250,17 +249,10 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
       <style>{`
         @keyframes marquee-fast {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        @keyframes marquee-fast-rtl {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(50%); }
+          100% { transform: translateX(-33.333%); }
         }
         .animate-marquee-fast {
-          animation: marquee-fast 30s linear infinite;
-        }
-        .animate-marquee-fast-rtl {
-          animation: marquee-fast-rtl 30s linear infinite;
+          animation: marquee-fast 36s linear infinite;
         }
       `}</style>
     </section>

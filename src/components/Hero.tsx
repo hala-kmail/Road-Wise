@@ -57,7 +57,7 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
           <div className="lg:col-span-8 flex flex-col justify-center p-8 md:p-16 glass-card rounded-[3rem] bg-white relative overflow-hidden group">
             {/* Corner Accents */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[4rem] -mr-8 -mt-8 group-hover:scale-110 transition-transform duration-700" />
-            <div className="absolute bottom-0 left-0 w-16 h-16 border-l-2 border-b-2 border-primary/20 m-8 rounded-bl-2xl" />
+            <div className="hidden sm:block absolute bottom-0 left-0 w-16 h-16 border-l-2 border-b-2 border-primary/20 m-8 rounded-bl-2xl" />
 
             <motion.div
               initial={{ opacity: 0, x: -20 }}
