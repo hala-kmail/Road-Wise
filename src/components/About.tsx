@@ -122,7 +122,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="relative md:col-span-2 lg:col-span-2 rounded-[2rem] bg-gradient-to-b from-bg-card via-white to-white ring-1 ring-black/5 shadow-[0_1px_0_rgba(47,159,157,0.06)] flex flex-col gap-4 overflow-visible"
+            className="relative md:col-span-2 lg:col-span-2  flex flex-col gap-4 overflow-visible"
             onMouseEnter={() => setPauseRotate(true)}
             onMouseLeave={() => setPauseRotate(false)}
           >
