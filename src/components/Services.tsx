@@ -57,7 +57,7 @@ export const Services: React.FC<ServicesProps> = ({ lang }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.05 }}
-                className="group p-6 bg-white rounded-[2rem] border border-black/5 hover:border-primary/20 transition-all shadow-sm hover:shadow-md flex flex-col h-full"
+                className="group p-6 bg-white rounded-[2rem] border border-black/5 hover:border-primary/20 transition-all shadow-[0_4px_28px_-8px_rgba(47,159,157,0.08)] hover:shadow-[0_16px_40px_-12px_rgba(47,159,157,0.14)] flex flex-col h-full"
               >
                 <div className="flex items-start justify-between mb-6">
                   <div className={cn("w-12 h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 duration-500", iconColors[idx % iconColors.length])}>

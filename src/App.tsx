@@ -46,7 +46,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-bg-deep font-sans text-dark overflow-x-hidden selection:bg-primary/20 selection:text-primary scroll-smooth">
+    <div className="min-h-screen bg-bg-deep font-sans text-dark overflow-x-hidden selection:bg-accent-yellow/22 selection:text-dark scroll-smooth">
       {/* Scroll Progress */}
       <motion.div className="scroll-progress" style={{ scaleX }} />
       

@@ -54,7 +54,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
       >
         <div className={cn(
           "glass rounded-2xl px-3 py-2 sm:px-5 sm:py-2.5 md:px-6 flex items-center justify-between gap-2 sm:gap-3 border border-black/5 shadow-2xl transition-all duration-500 min-w-0",
-          isScrolled ? "bg-white/95" : "bg-white/80"
+          isScrolled ? "bg-white/95" : "bg-white/78"
         )}>
           {/* Logo */}
           <a href="#home" className="flex items-center gap-2 sm:gap-3 group min-w-0 flex-1 pr-1">

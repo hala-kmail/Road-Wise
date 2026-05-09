@@ -7,8 +7,16 @@ import { Users, Globe, Telescope, Target, ChevronLeft, ChevronRight } from 'luci
 
 const LEADERSHIP_ROTATE_MS = 6000;
 
-const leadershipAvatarSrc = (seed: string) =>
-  `https://api.dicebear.com/9.x/avataaarsNeutral/svg?seed=${encodeURIComponent(seed)}&radius=12`;
+/** Editorial monogram tones — no cartoon avatars, brand-aligned gradients */
+const leaderMonogramTone = (idx: number) => {
+  const tones = [
+    'bg-gradient-to-br from-primary via-[#379e9c] to-accent-blue',
+    'bg-gradient-to-br from-secondary via-[#7a3d85] to-primary',
+    'bg-gradient-to-br from-accent-blue via-primary to-[#2a8f8d]',
+    'bg-gradient-to-br from-accent-blue via-primary to-accent-yellow',
+  ] as const;
+  return tones[idx % tones.length];
+};
 
 interface AboutProps { lang: 'en' | 'ar'; }
 
@@ -66,7 +74,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
   const activeLeader = leaders[activeLeaderIdx] ?? leaders[0];
 
   return (
-    <section id="about" className="sm:py-32 py-16 bg-white px-6 relative">
+    <section id="about" className="sm:py-32 py-16 bg-bg-deep px-6 relative">
       <div className="max-w-7xl mx-auto">
         <div className="text-center sm:mb-20 mb-10">
           <motion.h2 
@@ -85,7 +93,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="md:col-span-4 lg:col-span-4 bento-item bg-white"
+            className="md:col-span-4 lg:col-span-4 bento-item"
           >
             <div className="flex gap-2 mb-6">
               <div className="w-8 h-1 bg-primary rounded-full" />
@@ -114,64 +122,67 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="relative md:col-span-2 lg:col-span-2 bg-transparent flex flex-col gap-4 overflow-visible"
+            className="relative md:col-span-2 lg:col-span-2 rounded-[2rem] bg-gradient-to-b from-bg-card via-white to-white ring-1 ring-black/5 shadow-[0_1px_0_rgba(47,159,157,0.06)] flex flex-col gap-4 overflow-visible"
             onMouseEnter={() => setPauseRotate(true)}
             onMouseLeave={() => setPauseRotate(false)}
           >
-            <Users className={`pointer-events-none w-8 h-8 text-primary/10 absolute top-6 ${rtl ? 'left-10' : 'right-10'} scale-150`} />
+            <Users className={`pointer-events-none w-7 h-7 text-primary/[0.12] absolute top-7 ${rtl ? 'left-8' : 'right-8'}`} />
 
-            <div className={`relative px-6 pt-6 pb-2 ${rtl ? 'pl-14' : 'pr-14'}`}>
-              <h4 className="text-xs font-black uppercase tracking-widest text-primary mb-6">
+            <div className={`relative px-5 sm:px-6 pt-6 pb-2 ${rtl ? 'pl-12' : 'pr-12'}`}>
+              <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/90 mb-5">
                 {lang === 'en' ? 'Leadership' : 'القيادة'}
               </h4>
 
               <div
-                className="relative isolate px-2 sm:px-4 pt-8 pb-[26px]"
+                className="relative isolate px-1 sm:px-3 pt-6 pb-5 min-h-[260px]"
                 dir={rtl ? 'rtl' : 'ltr'}
               >
-                {/* Decorative stacked “backs”: same visual language, no real content */}
+                {/* Light stack silhouette — softer depth */}
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-x-6 top-12 z-[1] h-[min(100%,18rem)] min-h-[200px] rounded-3xl border border-black/5 bg-gradient-to-b from-neutral-50 to-white shadow-[0_10px_30px_-18px_rgba(0,0,0,0.45)] translate-y-[30px] scale-[0.9] origin-top"
+                  className="pointer-events-none absolute inset-x-7 top-11 z-0 rounded-[1.65rem] bg-gradient-to-b from-neutral-100/90 to-neutral-50/70 border border-neutral-200/60 translate-y-[38px] scale-[0.86] origin-top shadow-[0_12px_40px_-28px_rgba(0,0,0,0.35)] h-[calc(100%-2.5rem)] min-h-[200px]"
                 />
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-x-4 top-8 z-[2] min-h-[220px] rounded-3xl border-t-[6px] border-primary/35 bg-white shadow-md translate-y-[14px] scale-[0.96] origin-top"
+                  className="pointer-events-none absolute inset-x-4 top-6 z-[1] rounded-[1.75rem] bg-white border border-black/[0.06] translate-y-[18px] scale-[0.94] origin-top shadow-[0_12px_36px_-22px_rgba(47,159,157,0.18)] min-h-[220px]"
                 />
 
-                {/* Single interactive card — content swaps; stack illusion from layers above */}
+                {/* Active card — editorial, calm */}
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.article
-                    key={activeLeader.avatarSeed}
+                    key={`${activeLeaderIdx}-${activeLeader.avatarSeed}`}
                     role="article"
-                    initial={{ opacity: 0, x: rtl ? -16 : 16, filter: 'blur(4px)' }}
-                    animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-                    exit={{ opacity: 0, x: rtl ? 12 : -12, filter: 'blur(2px)' }}
-                    transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                    className="relative z-[3] bento-item bg-white border-t-8 border-primary shadow-xl"
+                    initial={{ opacity: 0, y: rtl ? -10 : 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: rtl ? 6 : -6 }}
+                    transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    className="relative z-[2] rounded-[1.75rem] bg-white p-5 sm:p-6 ring-1 ring-black/[0.06] shadow-[0_24px_52px_-36px_rgba(47,159,157,0.22),inset_0_1px_0_0_rgba(255,255,255,0.9)] flex flex-col"
                   >
-                    <div className={`flex gap-4 mb-4 ${rtl ? 'flex-row-reverse' : ''}`}>
+                    <div
+                      aria-hidden
+                      className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent rounded-t-[1.75rem]"
+                    />
+                    <div className={`flex gap-4 sm:gap-5 mb-5 ${rtl ? 'flex-row-reverse' : ''}`}>
                       <div className="shrink-0">
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-primary/10 border border-primary/15 overflow-hidden ring-2 ring-white shadow-md">
-                          <img
-                            src={leadershipAvatarSrc(activeLeader.avatarSeed)}
-                            alt=""
-                            className="w-full h-full object-contain object-center"
-                            width={80}
-                            height={80}
-                            loading="eager"
-                          />
+                        <div
+                          className={cn(
+                            'flex size-[4.25rem] sm:size-[4.75rem] items-center justify-center rounded-2xl text-lg sm:text-xl font-black tracking-tight text-white shadow-[0_8px_24px_-10px_rgba(47,159,157,0.65)] ring-4 ring-white',
+                            leaderMonogramTone(activeLeaderIdx)
+                          )}
+                          aria-hidden
+                        >
+                          {activeLeader.initials}
                         </div>
                       </div>
-                      <div className={`min-w-0 flex-1 pt-1 ${rtl ? 'text-right' : ''}`}>
-                        <p className="text-xl font-black text-dark leading-tight mb-1">{activeLeader.name}</p>
-                        <p className="text-[10px] font-bold text-dark/45 uppercase tracking-widest leading-snug">
+                      <div className={`min-w-0 flex-1 flex flex-col justify-center ${rtl ? 'text-right' : ''}`}>
+                        <p className="text-lg sm:text-xl font-black text-dark leading-snug mb-1.5">{activeLeader.name}</p>
+                        <p className="text-[10px] sm:text-[11px] font-bold text-primary/80 uppercase tracking-widest leading-snug">
                           {activeLeader.role}
                         </p>
                       </div>
                     </div>
-                    <p className="text-[11px] leading-relaxed text-dark/60 font-medium italic">
-                      &quot;{activeLeader.bio}&quot;
+                    <p className="text-xs sm:text-[13px] leading-[1.65] text-dark/55 font-medium border-s-[3px] border-primary/25 ps-3.5 -ms-px">
+                      {activeLeader.bio}
                     </p>
                   </motion.article>
                 </AnimatePresence>
@@ -180,9 +191,9 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
 
             {leaderCount > 1 && (
               <div
-                className={`flex flex-wrap items-center justify-between gap-3 px-6 pb-5 pt-0 ${rtl ? 'flex-row-reverse' : ''}`}
+                className={`flex flex-wrap items-center justify-between gap-3 px-5 sm:px-6 pb-5 pt-0 ${rtl ? 'flex-row-reverse' : ''}`}
               >
-                <div className="flex gap-1.5">
+                <div className="flex gap-1.5 items-center">
                   {leaders.map((person, dotIdx) => (
                     <button
                       key={person.avatarSeed}
@@ -190,28 +201,28 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
                       aria-label={lang === 'en' ? `Show ${person.name}` : `عرض ${person.name}`}
                       aria-current={dotIdx === activeLeaderIdx}
                       onClick={() => setActiveLeaderIdx(dotIdx)}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        dotIdx === activeLeaderIdx ? 'w-8 bg-primary' : 'w-2 bg-dark/15 hover:bg-dark/35'
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        dotIdx === activeLeaderIdx ? 'w-7 bg-primary shadow-[0_0_12px_-2px_rgba(47,159,157,0.7)]' : 'w-1.5 bg-dark/12 hover:bg-dark/28'
                       }`}
                     />
                   ))}
                 </div>
-                <div className={`flex items-center gap-2 ${rtl ? 'flex-row-reverse' : ''}`}>
+                <div className={`flex items-center gap-1.5 ${rtl ? 'flex-row-reverse' : ''}`}>
                   <button
                     type="button"
                     onClick={() => (rtl ? goNext() : goPrev())}
-                    className="h-9 w-9 rounded-xl border border-dark/10 bg-white hover:bg-black/[0.04] flex items-center justify-center shadow-sm transition-colors"
+                    className="h-9 w-9 rounded-xl border border-black/[0.07] bg-white text-dark/50 hover:bg-primary hover:text-white hover:border-primary flex items-center justify-center shadow-sm transition-all duration-200"
                     aria-label={lang === 'en' ? 'Previous leader' : 'السابق'}
                   >
-                    <ChevronLeft className={`w-5 h-5 text-dark ${rtl ? 'scale-x-[-1]' : ''}`} aria-hidden />
+                    <ChevronLeft className={`w-5 h-5 ${rtl ? 'scale-x-[-1]' : ''}`} aria-hidden />
                   </button>
                   <button
                     type="button"
                     onClick={() => (rtl ? goPrev() : goNext())}
-                    className="h-9 w-9 rounded-xl border border-dark/10 bg-white hover:bg-black/[0.04] flex items-center justify-center shadow-sm transition-colors"
+                    className="h-9 w-9 rounded-xl border border-black/[0.07] bg-white text-dark/50 hover:bg-primary hover:text-white hover:border-primary flex items-center justify-center shadow-sm transition-all duration-200"
                     aria-label={lang === 'en' ? 'Next leader' : 'التالي'}
                   >
-                    <ChevronRight className={`w-5 h-5 text-dark ${rtl ? 'scale-x-[-1]' : ''}`} aria-hidden />
+                    <ChevronRight className={`w-5 h-5 ${rtl ? 'scale-x-[-1]' : ''}`} aria-hidden />
                   </button>
                 </div>
               </div>
@@ -224,7 +235,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="md:col-span-2 lg:col-span-3 bento-item bg-white border-t-8 border-accent-blue"
+            className="md:col-span-2 lg:col-span-3 bento-item border-t-8 border-accent-blue"
           >
              <div className="flex items-center gap-3 mb-6">
                <div className="w-8 h-8 bg-accent-blue/10 rounded-lg flex items-center justify-center">
@@ -246,7 +257,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="md:col-span-2 lg:col-span-3 bento-item border-l-8 border-accent-yellow bg-white"
+            className="md:col-span-2 lg:col-span-3 bento-item border-l-8 border-accent-yellow"
           >
              <div className="flex items-center gap-3 mb-6">
                <div className="w-8 h-8 bg-accent-yellow/10 rounded-lg flex items-center justify-center text-accent-yellow">

@@ -50,7 +50,7 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
   };
 
   return (
-    <section id="contact" className="sm:py-24 py-16 bg-white px-6">
+    <section id="contact" className="sm:py-24 py-16 bg-bg-deep px-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-8 items-stretch">
           {/* Left Panel - Info */}

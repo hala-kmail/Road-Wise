@@ -12,7 +12,7 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
   const t = content[lang];
   
   return (
-    <footer className="bg-white text-dark sm:pt-32 pt-16 sm:pb-16 pb-8 px-6 border-t border-black/5">
+    <footer className="bg-bg-deep text-dark sm:pt-32 pt-16 sm:pb-16 pb-8 px-6 border-t border-black/5">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-24">
           {/* Brand */}

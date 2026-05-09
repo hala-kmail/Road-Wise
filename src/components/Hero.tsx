@@ -66,7 +66,7 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
     <section 
       ref={containerRef}
       id="home" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white px-6 pt-32 pb-24"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-bg-deep px-6 pt-32 pb-24"
     >
       {/* GRID PATTERN BACKGROUND */}
       <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#353535 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
@@ -81,15 +81,19 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
           animate={{ x: mousePos.x * -0.8, y: mousePos.y * -0.8 }}
           className="absolute bottom-0 -right-1/4 w-[800px] h-[800px] bg-secondary/5 rounded-full blur-[180px]"
         />
+        <motion.div
+          animate={{ x: mousePos.x * 0.6, y: mousePos.y * 0.5 }}
+          className="absolute top-1/3 right-1/4 w-[420px] h-[420px] bg-accent-yellow/8 rounded-full blur-[140px]"
+        />
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           
           {/* MAIN HERO CARD */}
-          <div className="lg:col-span-8 flex flex-col justify-center p-8 md:p-16 glass-card rounded-[3rem] bg-white relative overflow-hidden group">
+          <div className="lg:col-span-8 flex flex-col justify-center p-8 md:p-16 glass-card rounded-[3rem] relative overflow-hidden group">
             {/* Corner Accents */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[4rem] -mr-8 -mt-8 group-hover:scale-110 transition-transform duration-700" />
+            <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-bl from-accent-yellow/12 to-primary/8 rounded-bl-[4rem] -mr-8 -mt-8 group-hover:scale-110 transition-transform duration-700" />
             <div className="hidden sm:block absolute bottom-0 left-0 w-16 h-16 border-l-2 border-b-2 border-primary/20 m-8 rounded-bl-2xl" />
 
             <motion.div
@@ -191,7 +195,7 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
                             onClick={() => setActiveSlide(i)}
                             className={cn(
                               "h-1 transition-all duration-300 cursor-pointer rounded-full",
-                              activeSlide === i ? "w-8 bg-primary" : "w-2 bg-white/20"
+                              activeSlide === i ? "w-8 bg-primary" : "w-2 bg-primary/22"
                             )} 
                           />
                         ))}
@@ -267,14 +271,14 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
               <div
                 className="relative z-10 flex shrink-0 items-center justify-center gap-3 sm:gap-4"
               >
-                <div className="flex h-[4.5rem] w-[4.5rem] sm:h-20 sm:w-20 items-center justify-center rounded-2xl bg-white/80 ring-1 ring-accent-brown/15 shadow-sm">
+                <div className="flex h-[4.5rem] w-[4.5rem] sm:h-20 sm:w-20 items-center justify-center rounded-2xl bg-white/88 ring-1 ring-accent-brown/14 shadow-sm">
                   <img
                     src={palestineImg}
                     alt={lang === 'en' ? 'Palestine' : 'فلسطين'}
                     className="max-h-full max-w-full h-auto w-auto object-contain p-1.5"
                   />
                 </div>
-                <div className="flex h-[4.5rem] w-[4.5rem] sm:h-20 sm:w-20 items-center justify-center rounded-2xl bg-white/80 ring-1 ring-accent-brown/15 shadow-sm">
+                <div className="flex h-[4.5rem] w-[4.5rem] sm:h-20 sm:w-20 items-center justify-center rounded-2xl bg-white/88 ring-1 ring-accent-brown/14 shadow-sm">
                   <img
                     src={jordanImg}
                     alt={lang === 'en' ? 'Jordan' : 'الأردن'}

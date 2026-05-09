@@ -121,7 +121,7 @@ export const Engagements: React.FC<EngagementsProps> = ({ lang }) => {
                 <div className="relative">
                 <div
                   className={cn(
-                    'w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-8 shadow-sm border border-black/[0.04] transition-all transform group-hover:scale-105',
+                    'w-12 h-12 bg-white rounded-xl flex items-center justify-center mb-8 shadow-sm border border-black/5 transition-all transform group-hover:scale-105',
                     palette.icon,
                     palette.iconHoverBg,
                     palette.iconHoverFg,
