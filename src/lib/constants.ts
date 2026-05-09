@@ -73,6 +73,9 @@ export const content = {
       coverage: "Field experience in marginalized and under-resourced areas including refugee camps and Area C, covering West Bank, Gaza, and Palestine broadly."
     },
     services: {
+      portfolioTitle: "Strategic Portfolio",
+      categoryLabel: "Category",
+      detailsCta: "Details",
       title: "What We Do",
       items: [
         { id: 1, title: "Capacity Building & Training", desc: "Empowering organizations through targeted skill development and educational programs." },
@@ -216,6 +219,9 @@ export const content = {
       coverage: "خبرة ميدانية في المناطق المهمشة والأقل حظاً بما في ذلك مخيمات اللاجئين والمناطق (ج)، وتغطية الضفة الغربية وقطاع غزة وفلسطين بشكل عام."
     },
     services: {
+      portfolioTitle: "المحفظة الاستراتيجية",
+      categoryLabel: "فئة",
+      detailsCta: "التفاصيل",
       title: "ماذا نفعل",
       items: [
         { id: 1, title: "بناء القدرات والتدريب", desc: "تمكين المؤسسات من خلال تطوير المهارات المستهدفة والبرامج التعليمية." },
