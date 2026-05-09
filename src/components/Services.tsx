@@ -1,18 +1,36 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import Tilt from 'react-parallax-tilt';
-import { 
-  Users, Settings, ShieldCheck, Globe, 
-  FileText, LineChart, TrendingUp, Baby 
+import {
+  Presentation,
+  FolderTree,
+  Scale,
+  Megaphone,
+  FileSignature,
+  LineChart,
+  HandCoins,
+  ShieldUser,
+  type LucideIcon,
 } from 'lucide-react';
 import { content } from '../lib/constants';
 import { cn } from '../lib/utils';
 
 interface ServicesProps { lang: 'en' | 'ar'; }
 
+/** Order must match `content.*.services.items`. FA 5/6 → Lucide: chalkboard-teacher/graduation-cap, sitemap, balance-scale, bullhorn, file-signature, chart-line, hand-holding-usd/coins, user-shield */
+const SERVICE_ICONS: LucideIcon[] = [
+  Presentation,
+  FolderTree,
+  Scale,
+  Megaphone,
+  FileSignature,
+  LineChart,
+  HandCoins,
+  ShieldUser,
+];
+
 export const Services: React.FC<ServicesProps> = ({ lang }) => {
   const t = content[lang].services;
-  const icons = [Users, Settings, ShieldCheck, Globe, FileText, LineChart, TrendingUp, Baby];
   const glows = [
     'rgba(47,159,157,0.3)', 'rgba(99,41,108,0.3)', 'rgba(37,160,164,0.3)', 'rgba(248,192,45,0.3)',
     'rgba(117,62,4,0.3)', 'rgba(149,13,22,0.3)', 'rgba(47,159,157,0.3)', 'rgba(99,41,108,0.3)'
@@ -49,7 +67,7 @@ export const Services: React.FC<ServicesProps> = ({ lang }) => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {t.items.map((service, idx) => {
-            const Icon = icons[idx];
+            const Icon = SERVICE_ICONS[idx];
             return (
               <motion.div
                 key={service.id}

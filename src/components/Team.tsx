@@ -1,118 +1,218 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { motion } from 'motion/react';
 import { Linkedin, Mail, ChevronLeft, ChevronRight } from 'lucide-react';
 import { content } from '../lib/constants';
 import { cn } from '../lib/utils';
 
-interface TeamProps { lang: 'en' | 'ar'; }
+interface TeamProps {
+  lang: 'en' | 'ar';
+}
+
+type TeamMember = (typeof content.en.team.members)[number];
+
+const avatarTone = (idx: number) => {
+  const tones = [
+    'bg-primary shadow-[0_12px_28px_-8px_rgba(47,159,157,0.45)] ring-primary/25',
+    'bg-secondary shadow-[0_12px_28px_-8px_rgba(99,41,108,0.4)] ring-secondary/25',
+    'bg-accent-blue shadow-[0_12px_28px_-8px_rgba(37,160,164,0.4)] ring-accent-blue/25',
+    'bg-accent-yellow text-dark shadow-[0_12px_28px_-8px_rgba(248,192,45,0.35)] ring-accent-yellow/30',
+    'bg-accent-brown shadow-[0_12px_28px_-8px_rgba(117,62,4,0.35)] ring-accent-brown/25',
+    'bg-accent-red shadow-[0_12px_28px_-8px_rgba(149,13,22,0.4)] ring-accent-red/25',
+  ];
+  return tones[idx % tones.length];
+};
 
 export const Team: React.FC<TeamProps> = ({ lang }) => {
   const t = content[lang].team;
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(true);
 
-  const colors = [
-    'from-primary/20 to-primary/5',
-    'from-secondary/20 to-secondary/5',
-    'from-cyan/20 to-cyan/5',
-    'from-yellow/20 to-yellow/5',
-    'from-brown/20 to-brown/5',
-    'from-brand-red/20 to-brand-red/5'
-  ];
-
-  const borderGlows = [
-    'group-hover:border-primary/50 group-hover:shadow-[0_10px_30px_rgba(47,159,157,0.1)]',
-    'group-hover:border-secondary/50 group-hover:shadow-[0_10px_30px_rgba(99,41,108,0.1)]',
-    'group-hover:border-cyan/50 group-hover:shadow-[0_10px_30px_rgba(37,160,164,0.1)]',
-    'group-hover:border-yellow/50 group-hover:shadow-[0_10px_30px_rgba(248,192,45,0.1)]',
-    'group-hover:border-brown/50 group-hover:shadow-[0_10px_30px_rgba(117,62,4,0.1)]',
-    'group-hover:border-brand-red/50 group-hover:shadow-[0_10px_30px_rgba(149,13,22,0.1)]'
-  ];
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollRef.current) {
-      const { scrollLeft, clientWidth } = scrollRef.current;
-      const scrollTo = direction === 'left' ? scrollLeft - clientWidth / 2 : scrollLeft + clientWidth / 2;
-      scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+  const updateScrollState = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) {
+      return;
     }
+    const { scrollLeft, scrollWidth, clientWidth } = el;
+    const max = Math.max(0, scrollWidth - clientWidth);
+    setCanPrev(scrollLeft > 6);
+    setCanNext(scrollLeft < max - 6);
+  }, []);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) {
+      return;
+    }
+    updateScrollState();
+    el.addEventListener('scroll', updateScrollState, { passive: true });
+    const ro = new ResizeObserver(updateScrollState);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener('scroll', updateScrollState);
+      ro.disconnect();
+    };
+  }, [updateScrollState, lang, t.members.length]);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) {
+      el.scrollTo({ left: 0 });
+      updateScrollState();
+    }
+  }, [lang, updateScrollState]);
+
+  const scrollStrip = (forward: boolean) => {
+    const el = scrollRef.current;
+    if (!el) {
+      return;
+    }
+    const step = Math.min(el.clientWidth * 0.78, 340);
+    el.scrollBy({ left: forward ? step : -step, behavior: 'smooth' });
   };
 
   return (
-    <section id="team" className="sm:py-24 py-16 bg-bg-deep overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 mb-12">
-        <div className="flex items-center justify-between gap-8 mb-12">
-          <div className="text-start">
-            <motion.h2 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+    <section id="team" className="overflow-hidden bg-bg-deep py-16 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="mb-10 flex flex-col gap-6 sm:mb-12 sm:flex-row sm:items-end sm:justify-between">
+          <div className="min-w-0 text-start">
+            <motion.h2
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-black mb-2 tracking-tighter text-dark leading-none"
+              className="mb-2 text-4xl font-black leading-[1.05] tracking-tighter text-dark md:text-5xl"
             >
               {t.title}
             </motion.h2>
-            <p className="text-dark/30 font-bold text-xs uppercase tracking-widest leading-none">{t.subtitle}</p>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-dark/35">{t.subtitle}</p>
           </div>
-          <div className="h-px flex-1 bg-dark/5 hidden md:block" />
-        </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {t.members.map((member: any, idx: number) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
-              className="p-6 glass-card rounded-[2rem] bg-bg-card/50 border border-black/5 hover:border-primary/20 transition-all flex flex-col group h-full"
+
+          <div className="flex shrink-0 items-center gap-2 self-stretch sm:self-auto">
+            <button
+              type="button"
+              aria-label={lang === 'en' ? 'Scroll team left' : 'تمرير الفريق لليسار'}
+              disabled={!canPrev}
+              onClick={() => {
+                scrollStrip(false);
+              }}
+              className={cn(
+                'flex h-11 w-11 items-center justify-center rounded-full border border-dark/[0.08] bg-white/80 text-dark shadow-sm backdrop-blur-md transition-all',
+                'hover:border-primary/25 hover:bg-white hover:text-primary hover:shadow-md',
+                'disabled:pointer-events-none disabled:opacity-35'
+              )}
             >
-              <div className="flex items-center gap-4 mb-6">
-                <div className={cn(
-                  "w-12 h-12 rounded-xl flex items-center justify-center font-black text-xs text-white shadow-sm transition-transform group-hover:rotate-6",
-                  idx % 6 === 0 ? "bg-primary" : 
-                  idx % 6 === 1 ? "bg-secondary" : 
-                  idx % 6 === 2 ? "bg-accent-blue" : 
-                  idx % 6 === 3 ? "bg-accent-yellow" : 
-                  idx % 6 === 4 ? "bg-accent-brown" : "bg-accent-red"
-                )}>
-                  {member.initials}
-                </div>
-                <div>
-                  <h3 className="text-sm font-black text-dark leading-tight">{member.name}</h3>
-                  <p className="text-[10px] font-bold text-primary italic leading-none mt-1">{member.title}</p>
-                </div>
-              </div>
+              <ChevronLeft className="h-5 w-5" aria-hidden />
+            </button>
+            <button
+              type="button"
+              aria-label={lang === 'en' ? 'Scroll team right' : 'تمرير الفريق لليمين'}
+              disabled={!canNext}
+              onClick={() => {
+                scrollStrip(true);
+              }}
+              className={cn(
+                'flex h-11 w-11 items-center justify-center rounded-full border border-dark/[0.08] bg-white/80 text-dark shadow-sm backdrop-blur-md transition-all',
+                'hover:border-primary/25 hover:bg-white hover:text-primary hover:shadow-md',
+                'disabled:pointer-events-none disabled:opacity-35'
+              )}
+            >
+              <ChevronRight className="h-5 w-5" aria-hidden />
+            </button>
+          </div>
+        </div>
 
-              <div className="mb-6 space-y-2">
-                 <div className="flex items-center justify-between text-[10px] font-black uppercase text-dark/30">
+        {/* LTR scroll track so scrollLeft / arrows behave consistently; each card sets text direction */}
+        <div className="relative -mx-4 sm:-mx-6">
+          <div
+            className="pointer-events-none absolute inset-y-0 start-0 z-10 w-10 bg-gradient-to-r from-bg-deep to-transparent sm:w-14"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute inset-y-0 end-0 z-10 w-10 bg-gradient-to-l from-bg-deep to-transparent sm:w-14"
+            aria-hidden
+          />
+          <div
+            ref={scrollRef}
+            dir="ltr"
+            className={cn(
+              'flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:gap-5 sm:px-6',
+              'scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
+            )}
+          >
+            {t.members.map((member: TeamMember, idx: number) => (
+              <motion.article
+                key={`${member.name}-${idx}`}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ delay: idx * 0.04, duration: 0.45 }}
+                dir={lang === 'ar' ? 'rtl' : 'ltr'}
+                className={cn(
+                  'group relative flex min-h-[340px] w-[min(100%,280px)] shrink-0 snap-center flex-col sm:min-h-[360px] sm:w-[300px]',
+                  'rounded-[1.75rem] border border-white/55 bg-white/65 p-6 shadow-[0_20px_50px_-28px_rgba(47,159,157,0.12)] backdrop-blur-xl',
+                  'ring-1 ring-black/[0.03] transition-all duration-300',
+                  'hover:-translate-y-1 hover:border-primary/20 hover:bg-white/85 hover:shadow-[0_28px_60px_-24px_rgba(47,159,157,0.18)]'
+                )}
+              >
+                <div
+                  className="pointer-events-none absolute inset-x-0 top-0 h-1 rounded-t-[1.75rem] bg-gradient-to-r from-primary/80 via-primary-light/90 to-accent-yellow/70 opacity-90"
+                  aria-hidden
+                />
+
+                <div className="mb-5 flex flex-col items-center text-center">
+                  <div
+                    className={cn(
+                      'mb-4 flex h-[4.25rem] w-[4.25rem] items-center justify-center rounded-2xl text-lg font-black tracking-tight text-white ring-2 ring-white/40 transition-transform duration-300 group-hover:scale-[1.04]',
+                      avatarTone(idx)
+                    )}
+                  >
+                    {member.initials}
+                  </div>
+                  <h3 className="text-balance text-base font-black leading-tight text-dark sm:text-lg">
+                    {member.name}
+                  </h3>
+                  <p className="mt-2 line-clamp-2 text-pretty text-[11px] font-semibold leading-snug text-primary/90 sm:text-xs">
+                    {member.title}
+                  </p>
+                </div>
+
+                <div className="mb-5 flex flex-1 flex-col gap-3 rounded-2xl border border-black/[0.05] bg-white/50 p-3.5">
+                  <div className="flex items-center justify-between gap-2 text-[9px] font-black uppercase tracking-wider text-dark/35">
                     <span>{lang === 'en' ? 'Expertise' : 'الخبرة'}</span>
-                    <span className="text-dark/50">{member.exp}</span>
-                 </div>
-                 <div className="flex flex-wrap gap-1">
-                    <span className="px-2 py-0.5 bg-white border border-black/5 rounded-md text-[8px] font-black uppercase text-dark/40 tracking-wider">
-                       {member.specialty}
-                    </span>
-                 </div>
-              </div>
+                    <span className="tabular-nums text-dark/55">{member.exp}</span>
+                  </div>
+                  <span className="inline-flex w-fit max-w-full rounded-lg border border-primary/10 bg-primary/[0.06] px-2.5 py-1 text-[9px] font-black uppercase tracking-wide text-primary/90">
+                    {member.specialty}
+                  </span>
+                </div>
 
-              <div className="mt-auto pt-4 border-t border-black/5 flex items-center justify-between">
-                 <div className="flex gap-2">
-                    <a href="#" className="w-8 h-8 rounded-lg bg-white border border-black/5 flex items-center justify-center text-dark/30 hover:text-primary hover:border-primary transition-all">
-                       <Linkedin className="w-3.5 h-3.5" />
+                <div className="mt-auto flex items-center justify-between border-t border-black/[0.06] pt-4">
+                  <div className="flex gap-2">
+                    <a
+                      href="#"
+                      className="flex h-9 w-9 items-center justify-center rounded-xl border border-black/[0.06] bg-white/90 text-dark/40 transition-all hover:border-primary/25 hover:text-primary"
+                      aria-label={lang === 'en' ? 'LinkedIn' : 'لينكدإن'}
+                    >
+                      <Linkedin className="h-3.5 w-3.5" aria-hidden />
                     </a>
-                    <a href="#" className="w-8 h-8 rounded-lg bg-white border border-black/5 flex items-center justify-center text-dark/30 hover:text-primary hover:border-primary transition-all">
-                       <Mail className="w-3.5 h-3.5" />
+                    <a
+                      href="#"
+                      className="flex h-9 w-9 items-center justify-center rounded-xl border border-black/[0.06] bg-white/90 text-dark/40 transition-all hover:border-primary/25 hover:text-primary"
+                      aria-label={lang === 'en' ? 'Email' : 'البريد'}
+                    >
+                      <Mail className="h-3.5 w-3.5" aria-hidden />
                     </a>
-                 </div>
-                 <div className="w-2 h-2 rounded-full bg-primary/20" />
-              </div>
-            </motion.div>
-          ))}
+                  </div>
+                  <span className="h-2 w-2 rounded-full bg-gradient-to-br from-primary to-primary-light opacity-60 ring-4 ring-primary/10 transition-opacity group-hover:opacity-100" />
+                </div>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 mt-12 pb-12">
-        <p className="text-center text-dark/20 text-[9px] font-bold uppercase tracking-widest">
-          {t.disclaimer}
-        </p>
+      <div className="mx-auto mt-10 max-w-7xl px-4 pb-10 sm:px-6">
+        <p className="text-center text-[9px] font-bold uppercase tracking-widest text-dark/25">{t.disclaimer}</p>
       </div>
     </section>
   );

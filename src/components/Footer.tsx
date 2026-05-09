@@ -12,63 +12,68 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
   const t = content[lang];
   
   return (
-    <footer className="bg-bg-deep text-dark sm:pt-32 pt-16 sm:pb-16 pb-8 px-6 border-t border-black/5">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-24">
+    <footer className="relative border-t border-white/10 bg-dark pt-16 pb-8 text-white/90 sm:pb-16 sm:pt-32">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(47,159,157,0.12),transparent_55%)]" aria-hidden />
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        <div className="mb-24 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-4 mb-8">
+            <div className="mb-8 flex items-center gap-4">
               <img
                 src={brandLogo}
                 alt={t.site.documentTitle}
-                className="h-14 w-auto max-h-14 object-contain shrink-0 drop-shadow-[0_4px_12px_rgba(47,159,157,0.2)] rounded-full"
+                className="h-14 w-auto max-h-14 shrink-0 rounded-full object-contain drop-shadow-[0_4px_16px_rgba(47,159,157,0.35)]"
               />
               <div>
-                 <h3 className="font-black text-2xl tracking-tighter leading-none text-dark">{t.site.wordmarkLine1}</h3>
-                 <p className={cn('text-[10px] font-black text-dark/30 tracking-[0.3em]', lang === 'en' && 'uppercase')}>{t.site.wordmarkLine2}</p>
+                 <h3 className="text-2xl font-black leading-none tracking-tighter text-white">{t.site.wordmarkLine1}</h3>
+                 <p className={cn('text-[10px] font-black tracking-[0.3em] text-white/45', lang === 'en' && 'uppercase')}>{t.site.wordmarkLine2}</p>
               </div>
             </div>
-            <p className="text-dark/40 text-sm leading-relaxed mb-10 max-w-xs font-medium">
+            <p className="mb-10 max-w-xs text-sm font-medium leading-relaxed text-white/55">
               {t.hero.tagline}
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               {[Linkedin, Facebook, Twitter, Instagram].map((Icon, idx) => (
-                <a key={idx} href="#" className="w-12 h-12 bg-bg-card border border-black/5 rounded-xl flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300">
-                  <Icon className="w-5 h-5" />
+                <a
+                  key={idx}
+                  href="#"
+                  className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white/70 transition-all duration-300 hover:border-primary/40 hover:bg-primary hover:text-white"
+                >
+                  <Icon className="h-5 w-5" />
                 </a>
               ))}
             </div>
           </div>
 
           {/* Quick Links */}
-          <div className="lg:pl-12">
-            <h4 className="text-xs font-black uppercase tracking-[0.2em] text-dark/20 mb-8">
+          <div className="lg:ps-12">
+            <h4 className="mb-8 text-xs font-black uppercase tracking-[0.2em] text-white/40">
               {lang === 'en' ? "Navigation" : "التنقل"}
             </h4>
-            <ul className="space-y-4 text-dark/60 text-sm font-bold">
-              <li><a href="#home" className="hover:text-primary transition-colors">{t.nav.home}</a></li>
-              <li><a href="#about" className="hover:text-primary transition-colors">{t.nav.about}</a></li>
-              <li><a href="#services" className="hover:text-primary transition-colors">{t.nav.services}</a></li>
-              <li><a href="#team" className="hover:text-primary transition-colors">{t.nav.team}</a></li>
+            <ul className="space-y-4 text-sm font-bold text-white/65">
+              <li><a href="#home" className="transition-colors hover:text-primary-light">{t.nav.home}</a></li>
+              <li><a href="#about" className="transition-colors hover:text-primary-light">{t.nav.about}</a></li>
+              <li><a href="#services" className="transition-colors hover:text-primary-light">{t.nav.services}</a></li>
+              <li><a href="#team" className="transition-colors hover:text-primary-light">{t.nav.team}</a></li>
             </ul>
           </div>
 
           {/* Contact Summary */}
           <div>
-            <h4 className="text-xs font-black uppercase tracking-[0.2em] text-dark/20 mb-8">
+            <h4 className="mb-8 text-xs font-black uppercase tracking-[0.2em] text-white/40">
               {t.nav.contact}
             </h4>
-            <ul className="space-y-6 text-dark/60 text-sm font-medium">
+            <ul className="space-y-6 text-sm font-medium text-white/65">
               <li className="flex flex-col gap-1">
-                <span className="text-[10px] font-black text-dark/20 uppercase tracking-widest">{lang === 'en' ? 'Main Office' : 'المكتب الرئيسي'}</span>
-                <span className="font-bold text-dark/80">{t.contact.palestine.phone}</span>
+                <span className="text-[10px] font-black uppercase tracking-widest text-white/35">{lang === 'en' ? 'Main Office' : 'المكتب الرئيسي'}</span>
+                <span className="font-bold text-white/90">{t.contact.palestine.phone}</span>
               </li>
               <li className="flex flex-col gap-1">
-                <span className="text-[10px] font-black text-dark/20 uppercase tracking-widest">{lang === 'en' ? 'Regional Office' : 'المكتب الإقليمي'}</span>
-                <span className="font-bold text-dark/80">{t.contact.jordan.phone1}</span>
+                <span className="text-[10px] font-black uppercase tracking-widest text-white/35">{lang === 'en' ? 'Regional Office' : 'المكتب الإقليمي'}</span>
+                <span className="font-bold text-white/90">{t.contact.jordan.phone1}</span>
               </li>
               <li className="pt-2">
-                <a href={`mailto:${t.contact.palestine.email}`} className="text-primary font-black tracking-widest text-xs uppercase hover:underline transition-all">
+                <a href={`mailto:${t.contact.palestine.email}`} className="text-xs font-black uppercase tracking-widest text-primary-light transition-all hover:text-accent-yellow hover:underline">
                   {t.contact.palestine.email}
                 </a>
               </li>
@@ -77,25 +82,25 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
 
           {/* Regulatory */}
           <div>
-            <h4 className="text-xs font-black uppercase tracking-[0.2em] text-dark/20 mb-8">
+            <h4 className="mb-8 text-xs font-black uppercase tracking-[0.2em] text-white/40">
               {lang === 'en' ? "Registration" : "التسجيل"}
             </h4>
-            <div className="bg-bg-card p-6 rounded-3xl border border-black/5">
-              <p className="text-2xl font-black text-dark mb-2 tracking-tighter">#562595355</p>
-              <p className="text-xs text-dark/40 leading-relaxed font-medium">
+            <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-6 backdrop-blur-sm">
+              <p className="mb-2 text-2xl font-black tracking-tighter text-white">#562595355</p>
+              <p className="text-xs font-medium leading-relaxed text-white/50">
                 {lang === 'en' ? "Palestinian private shareholding company registered at the Ministry of National Economy." : "شركة مساهمة فلسطينية خاصة مسجلة لدى وزارة الاقتصاد الوطني."}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="pt-16 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-8">
-          <p className="text-dark/20 text-[10px] font-black uppercase tracking-[0.3em]">
+        <div className="flex flex-col items-center justify-between gap-8 border-t border-white/10 pt-16 md:flex-row">
+          <p className="text-center text-[10px] font-black uppercase tracking-[0.3em] text-white/35 md:text-start">
             {t.footer.rights}
           </p>
           <div className="flex gap-8">
-             <a href="#" className="text-dark/20 text-[10px] font-black uppercase tracking-widest hover:text-dark transition-colors">{lang === 'en' ? 'Privacy Policy' : 'سياسة الخصوصية'}</a>
-             <a href="#" className="text-dark/20 text-[10px] font-black uppercase tracking-widest hover:text-dark transition-colors">{lang === 'en' ? 'Terms of Service' : 'شروط الخدمة'}</a>
+             <a href="#" className="text-[10px] font-black uppercase tracking-widest text-white/35 transition-colors hover:text-white">{lang === 'en' ? 'Privacy Policy' : 'سياسة الخصوصية'}</a>
+             <a href="#" className="text-[10px] font-black uppercase tracking-widest text-white/35 transition-colors hover:text-white">{lang === 'en' ? 'Terms of Service' : 'شروط الخدمة'}</a>
           </div>
         </div>
       </div>
