@@ -61,7 +61,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
             <img
               src={brandLogo}
               alt={t.site.documentTitle}
-              className="h-8 w-auto max-h-8 max-w-[2.25rem] sm:max-h-9 sm:max-w-[2.75rem] md:h-12 md:max-h-12 md:max-w-none object-contain shrink-0 rounded-full drop-shadow-[0_4px_12px_rgba(47,159,157,0.2)] group-hover:opacity-90 transition-opacity"
+              className="h-10 w-auto max-h-10 max-w-[2.875rem] sm:h-11 sm:max-h-11 sm:max-w-[3.375rem] md:h-14 md:max-h-14 md:max-w-none object-contain shrink-0 rounded-full drop-shadow-[0_4px_12px_rgba(47,159,157,0.2)] group-hover:opacity-90 transition-opacity"
             />
             <div className="min-w-0 flex-1">
               <h3 className="font-black text-base sm:text-lg md:text-2xl tracking-tighter leading-tight text-dark truncate">{t.site.wordmarkLine1}</h3>
