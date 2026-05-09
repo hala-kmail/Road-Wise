@@ -243,7 +243,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
                </div>
                <h4 className="text-sm font-black uppercase tracking-widest leading-none text-accent-blue">{lang === 'en' ? 'Vision' : 'الرؤية'}</h4>
              </div>
-             <p className="text-base font-bold leading-relaxed mb-6 text-dark text-justify">
+             <p className="text-base  leading-relaxed mb-6 text-dark text-justify">
                {t.vision}
              </p>
              <div className="mt-auto h-1 w-full bg-accent-blue/10 rounded-full overflow-hidden">
@@ -265,7 +265,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
                </div>
                <h4 className="text-sm font-black uppercase tracking-widest text-dark leading-none">{lang === 'en' ? 'Mission' : 'الرسالة'}</h4>
              </div>
-             <p className="text-base font-bold leading-relaxed text-dark/70 text-justify">
+             <p className="text-base  leading-relaxed text-dark/70 text-justify">
                {t.mission}
              </p>
           </motion.div>
