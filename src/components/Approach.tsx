@@ -1,9 +1,25 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { content } from '../lib/constants';
-import { cn } from '../lib/utils';
+import {
+  Sprout,
+  Building2,
+  LineChart,
+  CheckCheck,
+  Brain,
+  Users,
+  type LucideIcon,
+} from 'lucide-react';
 
-import { CheckCircle2 } from 'lucide-react';
+/** Order must match `content.en.approach.tags` / `content.ar.approach.tags`. Maps to FA: seedling, city, chart-line, check-double, brain, users. */
+const APPROACH_TAG_ICONS: LucideIcon[] = [
+  Sprout,
+  Building2,
+  LineChart,
+  CheckCheck,
+  Brain,
+  Users,
+];
 
 interface ApproachProps { lang: 'en' | 'ar'; }
 
@@ -36,7 +52,9 @@ export const Approach: React.FC<ApproachProps> = ({ lang }) => {
           </div>
 
           <div className="lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-            {t.tags.map((tag, idx) => (
+            {t.tags.map((tag, idx) => {
+              const Icon = APPROACH_TAG_ICONS[idx] ?? APPROACH_TAG_ICONS[0];
+              return (
               <motion.div
                 key={tag}
                 initial={{ opacity: 0, y: 10 }}
@@ -45,15 +63,16 @@ export const Approach: React.FC<ApproachProps> = ({ lang }) => {
                 transition={{ delay: idx * 0.05 }}
                 className="p-6 bg-bg-card rounded-[2rem] border border-black/5 hover:border-secondary transition-all group flex items-center gap-6"
               >
-                <div className="w-10 h-10 bg-white rounded-xl flex-shrink-0 flex items-center justify-center text-secondary shadow-sm group-hover:bg-secondary group-hover:text-white transition-all transform group-hover:scale-105">
-                  <CheckCircle2 className="w-5 h-5" />
+                <div className="w-10 h-10 bg-white rounded-xl flex-shrink-0 flex items-center justify-center text-secondary shadow-sm group-hover:bg-secondary group-hover:text-white transition-all transform group-hover:scale-105" aria-hidden>
+                  <Icon className="w-5 h-5" strokeWidth={2} />
                 </div>
                 <div>
                    <span className="text-[8px] font-black text-secondary/40 uppercase mb-1 block">{lang === 'en' ? `Phase 0${idx+1}` : `المرحلة 0${idx+1}`}</span>
                    <h3 className="font-black text-sm text-dark leading-tight">{tag}</h3>
                 </div>
               </motion.div>
-            ))}
+            );
+            })}
           </div>
         </div>
       </div>

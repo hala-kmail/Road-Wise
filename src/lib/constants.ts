@@ -38,6 +38,29 @@ export const content = {
         ceo: "Mr. Moatasem Zaid",
         bio: "Senior consultant specializing in civic participation, with 20+ years of documented experience in development, public affairs management, funding, and civil society capacity building."
       },
+      leadershipTeam: [
+        {
+          name: "Mr. Moatasem Zaid",
+          role: "CEO & Senior Consultant",
+          bio: "Senior consultant specializing in civic participation, with 20+ years of documented experience in development, public affairs management, funding, and civil society capacity building.",
+          initials: "MZ",
+          avatarSeed: "moatasem-zaid",
+        },
+        {
+          name: "Lina Hamdan",
+          role: "MEL Specialist",
+          bio: "Illustrative profile — monitoring, evaluation, and learning lead focused on results frameworks and field data quality.",
+          initials: "LH",
+          avatarSeed: "lina-hamdan",
+        },
+        {
+          name: "Khaled Nasser",
+          role: "Governance Advisor",
+          bio: "Illustrative profile — transparency, accountability, and institutional governance programs across partner networks.",
+          initials: "KN",
+          avatarSeed: "khaled-nasser",
+        },
+      ],
       vision: "To deliver high-quality consulting and training services with full commitment to good governance principles and the best national and international practices.",
       mission: "To develop institutional and individual capabilities through innovative advisory and training services that translate needs into practical solutions with measurable results.",
       coverage: "Field experience in marginalized and under-resourced areas including refugee camps and Area C, covering West Bank, Gaza, and Palestine broadly."
@@ -151,6 +174,29 @@ export const content = {
         ceo: "السيد معتصم زيد",
         bio: "مستشار أول متخصص في المشاركة المدنية، مع أكثر من 20 عاماً من الخبرة الموثقة في التطوير، وإدارة الشؤون العامة، والتمويل، وبناء قدرات المجتمع المدني."
       },
+      leadershipTeam: [
+        {
+          name: "السيد معتصم زيد",
+          role: "المدير التنفيذي والمستشار الأول",
+          bio: "مستشار أول متخصص في المشاركة المدنية، مع أكثر من 20 عاماً من الخبرة الموثقة في التطوير، وإدارة الشؤون العامة، والتمويل، وبناء قدرات المجتمع المدني.",
+          initials: "MZ",
+          avatarSeed: "moatasem-zaid",
+        },
+        {
+          name: "لينا حمدان",
+          role: "أخصائية متابعة وتقييم",
+          bio: "ملف توضيحي — تقود إطارات النتائج وجودة البيانات الميدانية في المتابعة والتقييم والتعلم.",
+          initials: "LH",
+          avatarSeed: "lina-hamdan",
+        },
+        {
+          name: "خالد ناصر",
+          role: "مستشار الحوكمة",
+          bio: "ملف توضيحي — برامج الشفافية والمساءلة والحوكمة المؤسسية ضمن شبكات الشركاء.",
+          initials: "KN",
+          avatarSeed: "khaled-nasser",
+        },
+      ],
       vision: "تقديم خدمات استشارية وتدريبية عالية الجودة مع الالتزام التام بمبادئ الحوكمة الرشيدة وأفضل الممارسات الوطنية والدولية.",
       mission: "تطوير القدرات المؤسسية والفردية من خلال خدمات استشارية وتدريبية مبتكرة تترجم الاحتياجات إلى حلول عملية ذات نتائج ملموسة.",
       coverage: "خبرة ميدانية في المناطق المهمشة والأقل حظاً بما في ذلك مخيمات اللاجئين والمناطق (ج)، وتغطية الضفة الغربية وقطاع غزة وفلسطين بشكل عام."

@@ -13,18 +13,26 @@ import logo12 from '../assets/logo12.jpg';
 import logo13 from '../assets/logo13.jpg';
 import logo14 from '../assets/logo14.png';
 import logo15 from '../assets/logo15.png';
-import logo16 from '../assets/logo16.jpg';
+import logo16 from '../assets/logo16.jfif';
 import logo17 from '../assets/logo17.png';
 import logo18 from '../assets/logo18.png';
 import logo19 from '../assets/logo19.png';
 import logo20 from '../assets/logo20.png';
 
-/** Logos ordered logo1 … logo20 (extensions match files in `src/assets`). */
+/**
+ * Order for marquee: logo4 and logo15 are always adjacent (15 follows 4).
+ * Files still logo1 … logo20 in /assets; numbering in alt text matches file id.
+ */
+const PARTNER_LOGO_IDS = [
+  1, 2, 3, 4, 15, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20,
+] as const;
+
 export const partnerLogoSources = [
   logo1,
   logo2,
   logo3,
   logo4,
+  logo15,
   logo5,
   logo6,
   logo7,
@@ -35,7 +43,6 @@ export const partnerLogoSources = [
   logo12,
   logo13,
   logo14,
-  logo15,
   logo16,
   logo17,
   logo18,
@@ -46,8 +53,11 @@ export const partnerLogoSources = [
 export type PartnerLogoSlide = { src: string; alt: string };
 
 export function getPartnerLogoMarqueeSlides(lang: 'en' | 'ar'): PartnerLogoSlide[] {
-  return partnerLogoSources.map((src, i) => ({
-    src,
-    alt: lang === 'en' ? `Partner logo ${i + 1}` : `شعار شريك ${i + 1}`,
-  }));
+  return partnerLogoSources.map((src, i) => {
+    const id = PARTNER_LOGO_IDS[i];
+    return {
+      src,
+      alt: lang === 'en' ? `Partner logo ${id}` : `شعار شريك ${id}`,
+    };
+  });
 }

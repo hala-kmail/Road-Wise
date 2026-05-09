@@ -1,9 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { motion, useInView } from 'motion/react';
+import { motion, AnimatePresence, useInView } from 'motion/react';
 import { content } from '../lib/constants';
 import { getPartnerLogoMarqueeSlides } from '../lib/partnerMarqueeSlides';
 import { cn } from '../lib/utils';
-import { ClipboardCheck, Calendar, MapPin, Languages, Trophy, Users, Globe } from 'lucide-react';
+import { Users, Globe, Telescope, Target, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const LEADERSHIP_ROTATE_MS = 6000;
+
+const leadershipAvatarSrc = (seed: string) =>
+  `https://api.dicebear.com/9.x/avataaarsNeutral/svg?seed=${encodeURIComponent(seed)}&radius=12`;
 
 interface AboutProps { lang: 'en' | 'ar'; }
 
@@ -33,8 +38,33 @@ const Counter: React.FC<{ value: number; isYear?: boolean; prefix?: string }> = 
 
 export const About: React.FC<AboutProps> = ({ lang }) => {
   const t = content[lang].about;
+  const leaders = t.leadershipTeam;
+  const leaderCount = leaders.length;
+  const [activeLeaderIdx, setActiveLeaderIdx] = useState(0);
+  const [pauseRotate, setPauseRotate] = useState(false);
+
+  useEffect(() => {
+    if (pauseRotate || leaderCount <= 1) {
+      return;
+    }
+    const id = window.setInterval(() => {
+      setActiveLeaderIdx((prev) => (prev + 1) % leaderCount);
+    }, LEADERSHIP_ROTATE_MS);
+    return () => window.clearInterval(id);
+  }, [pauseRotate, leaderCount]);
+
+  const goPrev = () => {
+    setActiveLeaderIdx((prev) => (prev - 1 + leaderCount) % leaderCount);
+  };
+
+  const goNext = () => {
+    setActiveLeaderIdx((prev) => (prev + 1) % leaderCount);
+  };
+
   const partnerSlides = getPartnerLogoMarqueeSlides(lang);
-  
+  const rtl = lang === 'ar';
+  const activeLeader = leaders[activeLeaderIdx] ?? leaders[0];
+
   return (
     <section id="about" className="sm:py-32 py-16 bg-white px-6 relative">
       <div className="max-w-7xl mx-auto">
@@ -63,7 +93,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
               <div className="w-2 h-1 bg-accent-yellow rounded-full" />
             </div>
             <h3 className="text-sm font-black uppercase tracking-widest text-primary mb-4">{lang === 'en' ? 'Our Foundation' : 'أساسنا'}</h3>
-            <p className="text-lg md:text-xl font-bold leading-tight text-dark mb-8">
+            <p className="text-lg md:text-xl font-bold leading-tight text-dark mb-8 text-justify">
               {t.description}
             </p>
             
@@ -72,32 +102,120 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
                 <Globe className="w-4 h-4 text-accent-blue" />
                 <span className="text-[10px] font-black uppercase tracking-widest text-accent-blue">{lang === 'en' ? 'Geographic Coverage' : 'التغطية الجغرافية'}</span>
               </div>
-              <p className="text-xs font-bold text-dark/70 leading-relaxed">
+              <p className="text-xs font-bold text-dark/70 leading-relaxed text-justify">
                 {t.coverage}
               </p>
             </div>
           </motion.div>
 
-          {/* Leadership Card */}
-          <motion.div 
+          {/* Leadership stacked cards */}
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="md:col-span-2 lg:col-span-2 bento-item bg-white border-t-8 border-primary shadow-lg"
+            className="relative md:col-span-2 lg:col-span-2 bg-transparent flex flex-col gap-4 overflow-visible"
+            onMouseEnter={() => setPauseRotate(true)}
+            onMouseLeave={() => setPauseRotate(false)}
           >
-            <Users className={`w-8 h-8 text-primary/10 absolute  ${lang === 'ar' ? 'left-8' : 'right-8'} scale-150`} />
-            <div className="mb-6">
-              <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white font-black mb-4">
-                MZ
+            <Users className={`pointer-events-none w-8 h-8 text-primary/10 absolute top-6 ${rtl ? 'left-10' : 'right-10'} scale-150`} />
+
+            <div className={`relative px-6 pt-6 pb-2 ${rtl ? 'pl-14' : 'pr-14'}`}>
+              <h4 className="text-xs font-black uppercase tracking-widest text-primary mb-6">
+                {lang === 'en' ? 'Leadership' : 'القيادة'}
+              </h4>
+
+              <div
+                className="relative isolate px-2 sm:px-4 pt-8 pb-[26px]"
+                dir={rtl ? 'rtl' : 'ltr'}
+              >
+                {/* Decorative stacked “backs”: same visual language, no real content */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-6 top-12 z-[1] h-[min(100%,18rem)] min-h-[200px] rounded-3xl border border-black/5 bg-gradient-to-b from-neutral-50 to-white shadow-[0_10px_30px_-18px_rgba(0,0,0,0.45)] translate-y-[30px] scale-[0.9] origin-top"
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-4 top-8 z-[2] min-h-[220px] rounded-3xl border-t-[6px] border-primary/35 bg-white shadow-md translate-y-[14px] scale-[0.96] origin-top"
+                />
+
+                {/* Single interactive card — content swaps; stack illusion from layers above */}
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.article
+                    key={activeLeader.avatarSeed}
+                    role="article"
+                    initial={{ opacity: 0, x: rtl ? -16 : 16, filter: 'blur(4px)' }}
+                    animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, x: rtl ? 12 : -12, filter: 'blur(2px)' }}
+                    transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                    className="relative z-[3] bento-item bg-white border-t-8 border-primary shadow-xl"
+                  >
+                    <div className={`flex gap-4 mb-4 ${rtl ? 'flex-row-reverse' : ''}`}>
+                      <div className="shrink-0">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-primary/10 border border-primary/15 overflow-hidden ring-2 ring-white shadow-md">
+                          <img
+                            src={leadershipAvatarSrc(activeLeader.avatarSeed)}
+                            alt=""
+                            className="w-full h-full object-contain object-center"
+                            width={80}
+                            height={80}
+                            loading="eager"
+                          />
+                        </div>
+                      </div>
+                      <div className={`min-w-0 flex-1 pt-1 ${rtl ? 'text-right' : ''}`}>
+                        <p className="text-xl font-black text-dark leading-tight mb-1">{activeLeader.name}</p>
+                        <p className="text-[10px] font-bold text-dark/45 uppercase tracking-widest leading-snug">
+                          {activeLeader.role}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="text-[11px] leading-relaxed text-dark/60 font-medium italic">
+                      &quot;{activeLeader.bio}&quot;
+                    </p>
+                  </motion.article>
+                </AnimatePresence>
               </div>
-              <h4 className="text-xs font-black uppercase tracking-widest text-primary mb-1">{lang === 'en' ? 'Leadership' : 'القيادة'}</h4>
-              <p className="text-xl font-black text-dark leading-none mb-1">{t.leadership.ceo}</p>
-              <p className="text-[10px] font-bold text-dark/40 uppercase tracking-widest">{lang === 'en' ? 'CEO & Senior Consultant' : 'المدير التنفيذي والمستشار الأول'}</p>
             </div>
-            <p className="text-[11px] leading-relaxed text-dark/60 font-medium italic">
-              "{t.leadership.bio}"
-            </p>
+
+            {leaderCount > 1 && (
+              <div
+                className={`flex flex-wrap items-center justify-between gap-3 px-6 pb-5 pt-0 ${rtl ? 'flex-row-reverse' : ''}`}
+              >
+                <div className="flex gap-1.5">
+                  {leaders.map((person, dotIdx) => (
+                    <button
+                      key={person.avatarSeed}
+                      type="button"
+                      aria-label={lang === 'en' ? `Show ${person.name}` : `عرض ${person.name}`}
+                      aria-current={dotIdx === activeLeaderIdx}
+                      onClick={() => setActiveLeaderIdx(dotIdx)}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        dotIdx === activeLeaderIdx ? 'w-8 bg-primary' : 'w-2 bg-dark/15 hover:bg-dark/35'
+                      }`}
+                    />
+                  ))}
+                </div>
+                <div className={`flex items-center gap-2 ${rtl ? 'flex-row-reverse' : ''}`}>
+                  <button
+                    type="button"
+                    onClick={() => (rtl ? goNext() : goPrev())}
+                    className="h-9 w-9 rounded-xl border border-dark/10 bg-white hover:bg-black/[0.04] flex items-center justify-center shadow-sm transition-colors"
+                    aria-label={lang === 'en' ? 'Previous leader' : 'السابق'}
+                  >
+                    <ChevronLeft className={`w-5 h-5 text-dark ${rtl ? 'scale-x-[-1]' : ''}`} aria-hidden />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => (rtl ? goPrev() : goNext())}
+                    className="h-9 w-9 rounded-xl border border-dark/10 bg-white hover:bg-black/[0.04] flex items-center justify-center shadow-sm transition-colors"
+                    aria-label={lang === 'en' ? 'Next leader' : 'التالي'}
+                  >
+                    <ChevronRight className={`w-5 h-5 text-dark ${rtl ? 'scale-x-[-1]' : ''}`} aria-hidden />
+                  </button>
+                </div>
+              </div>
+            )}
           </motion.div>
 
           {/* Vision Card */}
@@ -110,11 +228,11 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
           >
              <div className="flex items-center gap-3 mb-6">
                <div className="w-8 h-8 bg-accent-blue/10 rounded-lg flex items-center justify-center">
-                 <Trophy className="w-4 h-4 text-accent-blue" />
+                 <Telescope className="w-4 h-4 text-accent-blue" aria-hidden />
                </div>
                <h4 className="text-sm font-black uppercase tracking-widest leading-none text-accent-blue">{lang === 'en' ? 'Vision' : 'الرؤية'}</h4>
              </div>
-             <p className="text-base font-bold leading-relaxed mb-6 text-dark">
+             <p className="text-base font-bold leading-relaxed mb-6 text-dark text-justify">
                {t.vision}
              </p>
              <div className="mt-auto h-1 w-full bg-accent-blue/10 rounded-full overflow-hidden">
@@ -132,85 +250,16 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
           >
              <div className="flex items-center gap-3 mb-6">
                <div className="w-8 h-8 bg-accent-yellow/10 rounded-lg flex items-center justify-center text-accent-yellow">
-                 <ClipboardCheck className="w-4 h-4" />
+                 <Target className="w-4 h-4" aria-hidden />
                </div>
                <h4 className="text-sm font-black uppercase tracking-widest text-dark leading-none">{lang === 'en' ? 'Mission' : 'الرسالة'}</h4>
              </div>
-             <p className="text-base font-bold leading-relaxed text-dark/70">
+             <p className="text-base font-bold leading-relaxed text-dark/70 text-justify">
                {t.mission}
              </p>
           </motion.div>
 
-          {/* Core Stat 1 */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="md:col-span-1 lg:col-span-2 bento-item bg-white border-t-8 border-accent-red"
-          >
-            <h3 className="text-5xl font-black mb-1 text-accent-red">
-               <Counter value={t.stats[0].value} prefix={t.stats[0].prefix} />
-            </h3>
-            <p className="text-[10px] font-black uppercase tracking-wider text-dark/40">
-              {t.stats[0].label}
-            </p>
-          </motion.div>
-
-          {/* Locations */}
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="md:col-span-2 lg:col-span-2 bento-item bg-white border border-black/5"
-          >
-             <div className="flex flex-col gap-4">
-               <div className="flex items-center gap-3">
-                 <div className="w-8 h-8 rounded-lg bg-bg-card flex items-center justify-center text-accent-blue shadow-sm">
-                   <MapPin className="w-4 h-4" />
-                 </div>
-                 <div>
-                  <p className="text-[8px] font-black uppercase text-dark/20 leading-none mb-1">{lang === 'en' ? 'Operational Hubs' : 'مراكز التشغيل'}</p>
-                  <p className="text-sm font-black text-dark">{lang === 'en' ? 'Palestine / Jordan' : 'فلسطين / الأردن'}</p>
-                 </div>
-               </div>
-               <div className="flex items-center gap-3">
-                 <div className="w-8 h-8 rounded-lg bg-bg-card flex items-center justify-center text-accent-yellow shadow-sm">
-                   <Languages className="w-4 h-4" />
-                 </div>
-                 <div>
-                  <p className="text-[8px] font-black uppercase text-dark/20 leading-none mb-1">{lang === 'en' ? 'Communications' : 'لغة التواصل'}</p>
-                  <p className="text-sm font-black text-dark">{lang === 'en' ? 'English / Arabic' : 'العربية / الإنجليزية'}</p>
-                 </div>
-               </div>
-             </div>
-          </motion.div>
-
-          {/* Secondary Stat */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
-            className="md:col-span-1 lg:col-span-2 bento-item bg-bg-card"
-          >
-             <h3 className="text-4xl font-black text-dark mb-1 leading-none">
-               {t.stats[1].isYear ? (
-                 <span className="flex items-center gap-1">
-                    <span className="text-[10px] font-black uppercase text-dark/40 mt-auto mb-1">{t.stats[1].label}</span>
-                    <Counter value={t.stats[1].value} isYear={true} />
-                 </span>
-               ) : (
-                 <Counter value={t.stats[1].value} />
-               )}
-            </h3>
-            {!t.stats[1].isYear && (
-              <p className="text-[10px] font-black uppercase tracking-wider text-dark/40">
-                {t.stats[1].label}
-              </p>
-            )}
-          </motion.div>
+         
 
           {/* Marquee/Partners (Wide) */}
           <motion.div 
@@ -229,14 +278,14 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
             </div>
             <div className="flex overflow-hidden mask-fade-x" dir="ltr">
                <div className={cn(
-                 "flex py-2 gap-8 whitespace-nowrap w-max will-change-transform animate-marquee-fast"
+                 "flex py-2 gap-10 sm:gap-12 whitespace-nowrap w-max will-change-transform animate-marquee-fast"
                )}>
                   {[...partnerSlides, ...partnerSlides, ...partnerSlides].map((slide, i) => (
                       <span key={i} className="inline-flex items-center shrink-0">
                         <img
                           src={slide.src}
                           alt={slide.alt}
-                          className="max-h-10 max-w-[140px] w-auto object-contain "
+                          className="max-h-14 sm:max-h-16 max-w-[200px] sm:max-w-[220px] w-auto object-contain"
                         />
                       </span>
                     )

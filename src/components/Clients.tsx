@@ -15,11 +15,11 @@ export const Clients: React.FC<ClientsProps> = ({ lang }) => {
 
   const renderSlide = (slide: (typeof slides)[number], i: number) => {
     return (
-      <div key={i} className="px-10 py-6 glass rounded-2xl border border-black/5 hover:border-primary/50 transition-colors flex items-center justify-center min-w-[200px] group cursor-default shadow-sm">
+      <div key={i} className="px-10 py-7 glass rounded-2xl border border-black/5 hover:border-primary/50 transition-colors flex items-center justify-center min-w-[260px] sm:min-w-[280px] group cursor-default shadow-sm">
         <img
           src={slide.src}
           alt={slide.alt}
-          className="max-h-12 max-w-[160px] w-auto object-contain opacity-50 group-hover:opacity-90 transition-opacity"
+          className="max-h-16 sm:max-h-20 max-w-[220px] sm:max-w-[260px] w-auto object-contain opacity-50 group-hover:opacity-90 transition-opacity"
         />
       </div>
     );
@@ -43,7 +43,7 @@ export const Clients: React.FC<ClientsProps> = ({ lang }) => {
         {/* Row 1 */}
         <div className="flex overflow-hidden mask-fade-x" dir="ltr">
           <div className={cn(
-            "flex py-4 gap-8 whitespace-nowrap hover:pause transition-all",
+            "flex py-5 gap-10 sm:gap-12 whitespace-nowrap hover:pause transition-all",
             "animate-marquee-left"
           )}>
             {[...row1, ...row1, ...row1].map((slide, i) => renderSlide(slide, i))}
@@ -53,7 +53,7 @@ export const Clients: React.FC<ClientsProps> = ({ lang }) => {
         {/* Row 2 */}
         <div className="flex overflow-hidden mask-fade-x" dir="ltr">
           <div className={cn(
-            "flex py-4 gap-8 whitespace-nowrap hover:pause transition-all",
+            "flex py-5 gap-10 sm:gap-12 whitespace-nowrap hover:pause transition-all",
             "animate-marquee-right"
           )}>
             {[...row2, ...row2, ...row2].map((slide, i) => renderSlide(slide, i))}
