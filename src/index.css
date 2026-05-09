@@ -30,7 +30,7 @@
   html {
     scroll-behavior: smooth;
     font-family: var(--font-sans);
-    font-size: 111.11%;
+    /* font-size: 111.11%; */
   }
   body {
     @apply bg-bg-deep text-dark selection:bg-accent-yellow/22 selection:text-dark overflow-x-hidden;
