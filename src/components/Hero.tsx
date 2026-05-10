@@ -1,13 +1,65 @@
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { Linkedin, Twitter, Facebook, Instagram, Sprout } from 'lucide-react';
 import { content } from '../lib/constants';
 import { cn } from '../lib/utils';
+import { fetchArticles } from '../lib/posts';
 import palestineImg from '../assets/palestine.svg';
 import jordanImg from '../assets/jordan.png';
 
 interface HeroProps {
   lang: 'en' | 'ar';
+}
+
+type HeroCarouselItem = {
+  title: string;
+  category: string;
+  date: string;
+  image: string;
+  href?: string;
+};
+
+const HERO_COVER_FALLBACK =
+  'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800';
+
+function formatHeroPublishedAt(iso: string, lang: 'en' | 'ar'): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) {
+    return '';
+  }
+  try {
+    return new Intl.DateTimeFormat(lang === 'ar' ? 'ar' : 'en-GB', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    }).format(d);
+  } catch {
+    return d.toLocaleDateString();
+  }
+}
+
+function buildFallbackCarousel(lang: 'en' | 'ar'): HeroCarouselItem[] {
+  return [
+    {
+      title: lang === 'en' ? 'New Partnership in Jordan' : 'شراكة جديدة في الأردن',
+      category: lang === 'en' ? 'News' : 'أخبار',
+      date: '2024',
+      image: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&q=80&w=800',
+    },
+    {
+      title: lang === 'en' ? 'Strategic Infrastructure Project' : 'مشروع بنية تحتية استراتيجي',
+      category: lang === 'en' ? 'Project' : 'مشروع',
+      date: '2024',
+      image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800',
+    },
+    {
+      title: lang === 'en' ? 'Consulting Excellence Award' : 'جائزة التميز في الاستشارات',
+      category: lang === 'en' ? 'Award' : 'جائزة',
+      date: '2023',
+      image: 'https://images.unsplash.com/photo-1523240715639-93f8fa096ee2?auto=format&fit=crop&q=80&w=800',
+    },
+  ];
 }
 
 export const Hero: React.FC<HeroProps> = ({ lang }) => {
@@ -16,33 +68,55 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
 
   const words = t.title.split(' ');
 
-  const carouselItems = useMemo(
-    () => [
-      {
-        title: lang === 'en' ? 'New Partnership in Jordan' : 'شراكة جديدة في الأردن',
-        category: lang === 'en' ? 'News' : 'أخبار',
-        date: '2024',
-        image: 'https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?auto=format&fit=crop&q=80&w=800',
-      },
-      {
-        title: lang === 'en' ? 'Strategic Infrastructure Project' : 'مشروع بنية تحتية استراتيجي',
-        category: lang === 'en' ? 'Project' : 'مشروع',
-        date: '2024',
-        image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800',
-      },
-      {
-        title: lang === 'en' ? 'Consulting Excellence Award' : 'جائزة التميز في الاستشارات',
-        category: lang === 'en' ? 'Award' : 'جائزة',
-        date: '2023',
-        image: 'https://images.unsplash.com/photo-1523240715639-93f8fa096ee2?auto=format&fit=crop&q=80&w=800',
-      },
-    ],
-    [lang]
-  );
+  const fallbackCarousel = useMemo(() => buildFallbackCarousel(lang), [lang]);
+
+  const [carouselItems, setCarouselItems] = useState<HeroCarouselItem[]>(fallbackCarousel);
+
+  useEffect(() => {
+    setCarouselItems(fallbackCarousel);
+  }, [fallbackCarousel]);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchArticles().then((posts) => {
+      if (cancelled) {
+        return;
+      }
+      if (!posts.length) {
+        return;
+      }
+      const sorted = [...posts].sort(
+        (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+      );
+      const fromApi: HeroCarouselItem[] = sorted.slice(0, 6).map((p) => ({
+        title: p.title,
+        category: p.categories[0] ?? (lang === 'en' ? 'Blog' : 'المدونة'),
+        date: formatHeroPublishedAt(p.publishedAt, lang),
+        image: p.coverImageUrl ?? HERO_COVER_FALLBACK,
+        href: `/blog/${p.documentId}`,
+      }));
+      setCarouselItems(fromApi);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [lang]);
 
   const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
+    setActiveSlide((prev) => {
+      if (carouselItems.length === 0) {
+        return 0;
+      }
+      return prev % carouselItems.length;
+    });
+  }, [carouselItems]);
+
+  useEffect(() => {
+    if (carouselItems.length === 0) {
+      return;
+    }
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % carouselItems.length);
     }, 5000);
@@ -186,30 +260,68 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
               <div className="relative flex-1">
                 {carouselItems.map((item, idx) => (
                   <motion.div
-                    key={idx}
+                    key={item.href ?? `fallback-${idx}`}
                     initial={false}
                     animate={{ opacity: activeSlide === idx ? 1 : 0 }}
                     transition={{ duration: 0.6 }}
                     className="absolute inset-0"
                     aria-hidden={activeSlide !== idx}
                   >
-                    <img
-                      src={item.image}
-                      alt=""
-                      className="h-full w-full object-cover opacity-70 transition-opacity duration-700 group-hover:opacity-85"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-                    <div className="absolute inset-x-0 bottom-0 px-6 pb-8 pt-24 sm:px-8 sm:pb-10">
-                      <div className="mb-3 flex flex-wrap items-center gap-2">
-                        <span className="rounded-md bg-white/15 px-2.5 py-1 text-[8px] font-black uppercase tracking-wider text-white backdrop-blur-md">
-                          {item.category}
-                        </span>
-                        <span className="text-[10px] font-semibold tabular-nums text-white/50">{item.date}</span>
-                      </div>
-                      <h2 className="mb-6 max-w-lg text-pretty text-xl font-black leading-snug text-white sm:text-2xl">
-                        {item.title}
-                      </h2>
-                      <div className="flex gap-2" role="tablist" aria-label={lang === 'en' ? 'Highlight slides' : 'شرائح المميزات'}>
+                    {item.href ? (
+                      <Link
+                        to={item.href}
+                        className="absolute inset-x-0 top-0 bottom-[5.25rem] z-[1] block cursor-pointer overflow-hidden outline-none transition-opacity focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
+                        aria-label={
+                          lang === 'en' ? `Open article: ${item.title}` : `فتح المقال: ${item.title}`
+                        }
+                      >
+                        <img
+                          src={item.image}
+                          alt=""
+                          className="absolute inset-0 h-full w-full object-cover opacity-70 transition-opacity duration-700 group-hover:opacity-85"
+                          loading={idx === 0 ? 'eager' : 'lazy'}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                        <div className="relative z-[2] flex h-full flex-col justify-end px-6 pb-2 sm:px-8">
+                          <div className="mb-3 flex flex-wrap items-center gap-2">
+                            <span className="rounded-md bg-white/15 px-2.5 py-1 text-[8px] font-black uppercase tracking-wider text-white backdrop-blur-md">
+                              {item.category}
+                            </span>
+                            <span className="text-[10px] font-semibold tabular-nums text-white/50">{item.date}</span>
+                          </div>
+                          <h2 className="max-w-lg text-pretty text-xl font-black leading-snug text-white transition-colors group-hover:text-primary-light sm:text-2xl">
+                            {item.title}
+                          </h2>
+                        </div>
+                      </Link>
+                    ) : (
+                      <>
+                        <img
+                          src={item.image}
+                          alt=""
+                          className="absolute inset-0 h-full w-full object-cover opacity-70 transition-opacity duration-700 group-hover:opacity-85"
+                          loading={idx === 0 ? 'eager' : 'lazy'}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                        <div className="absolute inset-x-0 bottom-[5.25rem] z-[1] px-6 sm:px-8">
+                          <div className="mb-3 flex flex-wrap items-center gap-2">
+                            <span className="rounded-md bg-white/15 px-2.5 py-1 text-[8px] font-black uppercase tracking-wider text-white backdrop-blur-md">
+                              {item.category}
+                            </span>
+                            <span className="text-[10px] font-semibold tabular-nums text-white/50">{item.date}</span>
+                          </div>
+                          <h2 className="max-w-lg text-pretty text-xl font-black leading-snug text-white sm:text-2xl">
+                            {item.title}
+                          </h2>
+                        </div>
+                      </>
+                    )}
+                    <div className="absolute inset-x-0 bottom-0 z-20 px-6 pb-8 pt-1 sm:px-8 sm:pb-10">
+                      <div
+                        className="flex gap-2"
+                        role="tablist"
+                        aria-label={lang === 'en' ? 'Highlight slides' : 'شرائح المميزات'}
+                      >
                         {carouselItems.map((_, i) => (
                           <button
                             key={i}

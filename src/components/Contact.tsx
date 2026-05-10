@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { content } from '../lib/constants';
-import { MapPin, Phone, Mail, Send, Smartphone, MessageCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Send, Smartphone } from 'lucide-react';
 import { cn } from '../lib/utils';
 
 interface ContactProps {
@@ -14,11 +14,17 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
   const t = content[lang].contact;
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
-  const handleWhatsApp = (e: React.FormEvent) => {
+  const handleEmailSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const phone = '972599251482';
-    const text = `Name: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`;
-    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
+    const to = t.palestine.email;
+    const subject = `${t.emailSubjectPrefix} — ${formData.name}`;
+    const bodyLines =
+      lang === 'en'
+        ? [`From: ${formData.name}`, `Reply to: ${formData.email}`, '', formData.message]
+        : [`من: ${formData.name}`, `البريد للرد: ${formData.email}`, '', formData.message];
+    const body = bodyLines.join('\n');
+    const href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = href;
   };
 
   const inputClass =
@@ -191,13 +197,13 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
                   <div>
                     <h3 className="text-lg font-black text-dark md:text-xl">{t.formHeading}</h3>
                     <p className="mt-1.5 flex items-center gap-2 text-xs font-semibold text-dark/50">
-                      <MessageCircle className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden />
-                      {t.whatsappHint}
+                      <Mail className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden />
+                      {t.emailFormHint}
                     </p>
                   </div>
                 </div>
 
-                <form className="flex flex-1 flex-col gap-4" onSubmit={handleWhatsApp}>
+                <form className="flex flex-1 flex-col gap-4" onSubmit={handleEmailSubmit}>
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <input
                       type="text"

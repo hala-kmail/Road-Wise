@@ -7,6 +7,7 @@ export const content = {
       team: "Team",
       clients: "Clients",
       contact: "Contact",
+      blog: "Blog",
     },
     site: {
       documentTitle: "Road Wise for Consulting",
@@ -132,7 +133,9 @@ export const content = {
       subtitle:
         "Reach our teams in Palestine and Jordan. Share a short brief and we will follow up as soon as we can.",
       formHeading: "Send a message",
-      whatsappHint: "Continues in WhatsApp with your details prefilled.",
+      emailFormHint:
+        "When you submit, your default email app opens with a new message to us — review it and press send.",
+      emailSubjectPrefix: "Road Wise website inquiry",
       form: {
         name: "Full Name",
         email: "Email",
@@ -166,6 +169,7 @@ export const content = {
       team: "فريقنا",
       clients: "عملاؤنا",
       contact: "اتصل بنا",
+      blog: "المدونة",
     },
     site: {
       documentTitle: "رودوايز للخدمات الاستشارية",
@@ -291,7 +295,9 @@ export const content = {
       subtitle:
         "تواصل مع فرقنا في فلسطين والأردن. اكتب لنا موجزاً عن احتياجكم وسنعود إليكم في أقرب وقت.",
       formHeading: "أرسل رسالة",
-      whatsappHint: "يُكمِل الإرسال عبر واتساب مع تفاصيلك مُعبأة مسبقاً.",
+      emailFormHint:
+        "عند الإرسال يُفتح تطبيق البريد لديك برسالة جديدة موجهة إلينا — راجعها ثم أرسلها.",
+      emailSubjectPrefix: "استفسار من موقع رودوايز",
       form: {
         name: "الاسم الكامل",
         email: "البريد الإلكتروني",

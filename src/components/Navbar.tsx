@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
@@ -13,7 +14,9 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
   const t = content[lang];
+  const isBlog = location.pathname === '/blog' || location.pathname.startsWith('/blog/');
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -85,6 +88,15 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
                 </span>
               </a>
             ))}
+            <Link
+              to="/blog"
+              className={cn(
+                'text-[10px] font-black uppercase tracking-widest transition-colors relative overflow-hidden h-4',
+                isBlog ? 'text-primary' : 'text-dark/40 hover:text-primary'
+              )}
+            >
+              {t.nav.blog}
+            </Link>
             
             <div className="w-px h-5 bg-dark/10" />
 
@@ -146,6 +158,16 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
                   {link.name}
                 </a>
               ))}
+              <Link
+                to="/blog"
+                onClick={() => setIsMenuOpen(false)}
+                className={cn(
+                  'block py-3.5 px-2 text-xl sm:text-3xl font-black transition-colors tracking-tighter rounded-xl hover:bg-primary/5',
+                  isBlog ? 'text-primary' : 'text-dark hover:text-primary active:text-primary'
+                )}
+              >
+                {t.nav.blog}
+              </Link>
             </div>
           </motion.div>
         )}

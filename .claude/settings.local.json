@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\skynet\\\\Desktop\\\\New folder\\\\Road Wise\\\\Road-Wise\" -Force)",
+      "Bash(Select-Object Name, FullName, PSIsContainer)",
+      "Bash(ConvertTo-Json)"
+    ]
+  }
+}
