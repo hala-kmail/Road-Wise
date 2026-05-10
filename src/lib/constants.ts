@@ -128,6 +128,11 @@ export const content = {
     },
     contact: {
       title: "Get in Touch",
+      eyebrow: "Contact",
+      subtitle:
+        "Reach our teams in Palestine and Jordan. Share a short brief and we will follow up as soon as we can.",
+      formHeading: "Send a message",
+      whatsappHint: "Continues in WhatsApp with your details prefilled.",
       form: {
         name: "Full Name",
         email: "Email",
@@ -282,6 +287,11 @@ export const content = {
     },
     contact: {
       title: "تواصل معنا",
+      eyebrow: "اتصل بنا",
+      subtitle:
+        "تواصل مع فرقنا في فلسطين والأردن. اكتب لنا موجزاً عن احتياجكم وسنعود إليكم في أقرب وقت.",
+      formHeading: "أرسل رسالة",
+      whatsappHint: "يُكمِل الإرسال عبر واتساب مع تفاصيلك مُعبأة مسبقاً.",
       form: {
         name: "الاسم الكامل",
         email: "البريد الإلكتروني",
