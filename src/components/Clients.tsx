@@ -15,47 +15,56 @@ export const Clients: React.FC<ClientsProps> = ({ lang }) => {
 
   const renderSlide = (slide: (typeof slides)[number], i: number) => {
     return (
-      <div key={i} className="px-10 py-7 glass rounded-2xl border border-black/5 hover:border-primary/50 transition-colors flex items-center justify-center min-w-[260px] sm:min-w-[280px] group cursor-default shadow-sm">
+      <div
+        key={i}
+        className="group flex min-w-[200px] cursor-default items-center justify-center rounded-xl border border-black/[0.06] bg-white/70 px-6 py-4 shadow-sm backdrop-blur-sm transition-colors hover:border-primary/35 sm:min-w-[220px] sm:px-7 sm:py-5"
+      >
         <img
           src={slide.src}
           alt={slide.alt}
-          className="max-h-16 sm:max-h-20 max-w-[220px] sm:max-w-[260px] w-auto object-contain opacity-50 group-hover:opacity-90 transition-opacity"
+          className="h-auto max-h-12 w-auto max-w-[145px] object-contain opacity-55 transition-opacity group-hover:opacity-90 sm:max-h-14 sm:max-w-[165px] md:max-h-[3.75rem] md:max-w-[180px]"
         />
       </div>
     );
   };
 
   return (
-    <section id="clients" className="sm:py-32 py-16 bg-bg-card overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 mb-20 text-center">
-        <motion.h2 
-           initial={{ opacity: 0, scale: 0.9 }}
-           whileInView={{ opacity: 1, scale: 1 }}
-           viewport={{ once: true }}
-           className="text-4xl md:text-6xl font-black mb-4 tracking-tighter text-dark"
+    <section id="clients" className="overflow-hidden bg-bg-card py-16 sm:py-24">
+      <div className="mx-auto mb-12 max-w-7xl px-4 text-center sm:mb-14 sm:px-6">
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-3 text-4xl font-black tracking-tighter text-dark md:text-5xl"
         >
           {t.title}
         </motion.h2>
-        <p className="text-dark/30 font-black tracking-widest uppercase text-xs">{lang === 'en' ? 'Our Strategic Global Partners' : 'شركاؤنا الاستراتيجيون العالميون'}</p>
+        <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-dark/35">
+          {lang === 'en' ? 'Our Strategic Global Partners' : 'شركاؤنا الاستراتيجيون العالميون'}
+        </p>
       </div>
 
-      <div className="space-y-8 relative">
+      <div className="relative space-y-5 sm:space-y-6">
         {/* Row 1 */}
         <div className="flex overflow-hidden mask-fade-x" dir="ltr">
-          <div className={cn(
-            "flex py-5 gap-10 sm:gap-12 whitespace-nowrap hover:pause transition-all",
-            "animate-marquee-left"
-          )}>
+          <div
+            className={cn(
+              'flex gap-6 whitespace-nowrap py-3 transition-all hover:pause sm:gap-8 sm:py-4',
+              'animate-marquee-left'
+            )}
+          >
             {[...row1, ...row1, ...row1].map((slide, i) => renderSlide(slide, i))}
           </div>
         </div>
  
         {/* Row 2 */}
         <div className="flex overflow-hidden mask-fade-x" dir="ltr">
-          <div className={cn(
-            "flex py-5 gap-10 sm:gap-12 whitespace-nowrap hover:pause transition-all",
-            "animate-marquee-right"
-          )}>
+          <div
+            className={cn(
+              'flex gap-6 whitespace-nowrap py-3 transition-all hover:pause sm:gap-8 sm:py-4',
+              'animate-marquee-right'
+            )}
+          >
             {[...row2, ...row2, ...row2].map((slide, i) => renderSlide(slide, i))}
           </div>
         </div>

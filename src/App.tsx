@@ -8,6 +8,7 @@ import { motion, useScroll, useSpring } from 'motion/react';
 import { Navbar } from './components/Navbar.tsx';
 import { Hero } from './components/Hero.tsx';
 import { About } from './components/About.tsx';
+import { VisionMission } from './components/VisionMission.tsx';
 import { Services } from './components/Services.tsx';
 import { Approach } from './components/Approach.tsx';
 import { Team } from './components/Team.tsx';
@@ -58,6 +59,7 @@ export default function App() {
       <main>
         <Hero lang={lang} />
         <About lang={lang} />
+        <VisionMission lang={lang} />
         <Services lang={lang} />
         <Approach lang={lang} />
         <Team lang={lang} />

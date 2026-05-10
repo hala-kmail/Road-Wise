@@ -72,6 +72,13 @@ export const content = {
       mission: "To develop institutional and individual capabilities through innovative advisory and training services that translate needs into practical solutions with measurable results.",
       coverage: "Field experience in marginalized and under-resourced areas including refugee camps and Area C, covering West Bank, Gaza, and Palestine broadly."
     },
+    visionMission: {
+      eyebrow: "Strategic direction",
+      sectionTitle: "Vision & Mission",
+      sectionSubtitle: "The principles that orient our work with partners and communities.",
+      visionTitle: "Vision",
+      missionTitle: "Mission",
+    },
     services: {
       portfolioTitle: "Strategic Portfolio",
       categoryLabel: "Category",
@@ -111,6 +118,7 @@ export const content = {
     },
     engagements: {
       title: "Selected Engagements",
+      subtitle: "Impact across diverse sectors",
       items: [
         { id: 1, title: "Digital advocacy for youth in refugee camps", desc: "Empowering next-gen voices through tech-driven storytelling." },
         { id: 2, title: "Strategic planning for municipalities", desc: "Guided urban development frameworks for local governance." },
@@ -218,6 +226,13 @@ export const content = {
       mission: "تطوير القدرات المؤسسية والفردية من خلال خدمات استشارية وتدريبية مبتكرة تترجم الاحتياجات إلى حلول عملية ذات نتائج ملموسة.",
       coverage: "خبرة ميدانية في المناطق المهمشة والأقل حظاً بما في ذلك مخيمات اللاجئين والمناطق (ج)، وتغطية الضفة الغربية وقطاع غزة وفلسطين بشكل عام."
     },
+    visionMission: {
+      eyebrow: "التوجه الاستراتيجي",
+      sectionTitle: "الرؤية والرسالة",
+      sectionSubtitle: "المبادئ التي توجه عملنا مع الشركاء والمجتمعات.",
+      visionTitle: "الرؤية",
+      missionTitle: "الرسالة",
+    },
     services: {
       portfolioTitle: "المحفظة الاستراتيجية",
       categoryLabel: "فئة",
@@ -257,6 +272,7 @@ export const content = {
     },
     engagements: {
       title: "مشاريع مختارة",
+      subtitle: "أثر ممتد عبر قطاعات متنوعة",
       items: [
         { id: 1, title: "المناصرة الرقمية للشباب في مخيمات اللاجئين", desc: "تمكين أصوات الجيل القادم من خلال رواية القصص التقنية." },
         { id: 2, title: "التخطيط الاستراتيجي للبلديات", desc: "أطر التطوير الحضري الموجهة للحكم المحلي." },
