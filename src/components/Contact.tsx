@@ -10,21 +10,40 @@ interface ContactProps {
 
 const telHref = (raw: string) => `tel:${raw.replace(/[^\d+]/g, '')}`;
 
+type FormStatus = 'idle' | 'sending' | 'success' | 'error';
+
 export const Contact: React.FC<ContactProps> = ({ lang }) => {
   const t = content[lang].contact;
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formStatus, setFormStatus] = useState<FormStatus>('idle');
 
-  const handleEmailSubmit = (e: React.FormEvent) => {
+  const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const to = t.palestine.email;
-    const subject = `${t.emailSubjectPrefix} — ${formData.name}`;
-    const bodyLines =
-      lang === 'en'
-        ? [`From: ${formData.name}`, `Reply to: ${formData.email}`, '', formData.message]
-        : [`من: ${formData.name}`, `البريد للرد: ${formData.email}`, '', formData.message];
-    const body = bodyLines.join('\n');
-    const href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = href;
+    if (formStatus === 'sending') {
+      return;
+    }
+    setFormStatus('sending');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          lang,
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { ok?: boolean };
+      if (res.ok && data.ok) {
+        setFormStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        return;
+      }
+      setFormStatus('error');
+    } catch {
+      setFormStatus('error');
+    }
   };
 
   const inputClass =
@@ -208,9 +227,13 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
                     <input
                       type="text"
                       required
+                      disabled={formStatus === 'sending'}
                       value={formData.name}
                       onChange={(e) => {
                         setFormData({ ...formData, name: e.target.value });
+                        if (formStatus === 'success' || formStatus === 'error') {
+                          setFormStatus('idle');
+                        }
                       }}
                       placeholder={t.form.name}
                       className={inputClass}
@@ -218,9 +241,13 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
                     <input
                       type="email"
                       required
+                      disabled={formStatus === 'sending'}
                       value={formData.email}
                       onChange={(e) => {
                         setFormData({ ...formData, email: e.target.value });
+                        if (formStatus === 'success' || formStatus === 'error') {
+                          setFormStatus('idle');
+                        }
                       }}
                       placeholder={t.form.email}
                       className={inputClass}
@@ -229,20 +256,36 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
                   <textarea
                     rows={5}
                     required
+                    disabled={formStatus === 'sending'}
                     value={formData.message}
                     onChange={(e) => {
                       setFormData({ ...formData, message: e.target.value });
+                      if (formStatus === 'success' || formStatus === 'error') {
+                        setFormStatus('idle');
+                      }
                     }}
                     placeholder={t.form.message}
                     className={cn(inputClass, 'min-h-[8.5rem] resize-y')}
                   />
 
+                  {formStatus === 'success' && (
+                    <p className="rounded-2xl border border-primary/25 bg-primary/8 px-4 py-3 text-sm font-semibold text-dark">
+                      {t.formSuccess}
+                    </p>
+                  )}
+                  {formStatus === 'error' && (
+                    <p className="rounded-2xl border border-red-500/25 bg-red-500/8 px-4 py-3 text-sm font-semibold text-dark">
+                      {t.formError}
+                    </p>
+                  )}
+
                   <button
                     type="submit"
-                    className="hero-cta-shine group relative mt-1 flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary to-primary-light py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-lg shadow-primary/30 transition-transform hover:scale-[1.01] active:scale-[0.99]"
+                    disabled={formStatus === 'sending'}
+                    className="hero-cta-shine group relative mt-1 flex w-full items-center justify-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-primary via-primary to-primary-light py-4 text-sm font-black uppercase tracking-[0.16em] text-white shadow-lg shadow-primary/30 transition-transform enabled:hover:scale-[1.01] enabled:active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     <span className="relative z-[1] flex items-center gap-3">
-                      {t.form.send}
+                      {formStatus === 'sending' ? t.formSending : t.form.send}
                       <Send className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 rtl:rotate-180" aria-hidden />
                     </span>
                   </button>

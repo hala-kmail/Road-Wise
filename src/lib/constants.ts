@@ -134,7 +134,10 @@ export const content = {
         "Reach our teams in Palestine and Jordan. Share a short brief and we will follow up as soon as we can.",
       formHeading: "Send a message",
       emailFormHint:
-        "When you submit, your default email app opens with a new message to us — review it and press send.",
+        "Submit the form and your message is emailed to our team from our site server (SMTP).",
+      formSending: "Sending…",
+      formSuccess: "Thank you — we have received your message.",
+      formError: "Could not send. Try again or email us directly.",
       emailSubjectPrefix: "Road Wise website inquiry",
       form: {
         name: "Full Name",
@@ -148,7 +151,7 @@ export const content = {
         address: "Jenin City, Al Askary St., MARMARA Building – Floor 2, West Bank & Gaza, Palestine",
         phone: "+970-42437274",
         mobile: "+972 599 251482",
-        email: "info@roadwiseconsulting.com"
+        email: "contact@roadwiseconsulting.com"
       },
       jordan: {
         title: "Jordan Office",
@@ -296,7 +299,10 @@ export const content = {
         "تواصل مع فرقنا في فلسطين والأردن. اكتب لنا موجزاً عن احتياجكم وسنعود إليكم في أقرب وقت.",
       formHeading: "أرسل رسالة",
       emailFormHint:
-        "عند الإرسال يُفتح تطبيق البريد لديك برسالة جديدة موجهة إلينا — راجعها ثم أرسلها.",
+        "أرسل النموذج لتصل رسالتكم إلى فريقنا عبر خادم الموقع (SMTP).",
+      formSending: "جاري الإرسال…",
+      formSuccess: "شكراً — تم استلام رسالتكم.",
+      formError: "تعذر الإرسال. أعد المحاولة أو راسلونا مباشرة بالبريد.",
       emailSubjectPrefix: "استفسار من موقع رودوايز",
       form: {
         name: "الاسم الكامل",
@@ -310,7 +316,7 @@ export const content = {
         address: "مدينة جنين، شارع العسكري، مبنى مرمرة – الطابق الثاني، الضفة الغربية وقطاع غزة، فلسطين",
         phone: "+970-42437274",
         mobile: "+972 599 251482",
-        email: "info@roadwiseconsulting.com"
+        email: "contact@roadwiseconsulting.com"
       },
       jordan: {
         title: "مكتب الأردن",
