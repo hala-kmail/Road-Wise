@@ -110,7 +110,7 @@ export const Engagements: React.FC<EngagementsProps> = ({ lang }) => {
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto max-w-6xl">
+      <div className="relative z-10 mx-auto max-w-7xl">
         <div className="mb-10 text-center sm:mb-12">
           <motion.h2
             initial={{ opacity: 0, y: 12 }}

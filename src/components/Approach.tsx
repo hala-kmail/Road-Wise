@@ -27,7 +27,7 @@ export const Approach: React.FC<ApproachProps> = ({ lang }) => {
   const t = content[lang].approach;
 
   return (
-    <section id="approach" className="sm:py-24 py-16 bg-bg-deep px-6">
+    <section id="approach" className="bg-bg-deep px-4 py-16 sm:px-6 sm:py-24">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-16 items-start">
           <div className="lg:w-1/3">
@@ -61,14 +61,14 @@ export const Approach: React.FC<ApproachProps> = ({ lang }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.05 }}
-                className="p-6 bg-bg-card rounded-[2rem] border border-black/5 hover:border-secondary transition-all group flex items-center gap-6"
+                className="flex items-center gap-4 rounded-[2rem] border border-black/5 bg-bg-card p-5 transition-all group hover:border-secondary sm:gap-6 sm:p-6"
               >
                 <div className="w-10 h-10 bg-white rounded-xl flex-shrink-0 flex items-center justify-center text-secondary shadow-sm group-hover:bg-secondary group-hover:text-white transition-all transform group-hover:scale-105" aria-hidden>
                   <Icon className="w-5 h-5" strokeWidth={2} />
                 </div>
                 <div>
                    <span className="text-label-sm font-black text-secondary/40 uppercase mb-1 block">{lang === 'en' ? `Phase 0${idx+1}` : `المرحلة 0${idx+1}`}</span>
-                   <h3 className="font-black text-body-sm text-dark leading-tight lg:text-base">{tag}</h3>
+                   <h3 className="text-pretty text-base font-bold leading-snug text-dark sm:text-lg">{tag}</h3>
                 </div>
               </motion.div>
             );

@@ -105,7 +105,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
                     {lang === 'en' ? 'Geographic Coverage' : 'التغطية الجغرافية'}
                   </span>
                 </div>
-                <p className="max-w-3xl text-pretty text-sm font-medium leading-relaxed text-dark/65 text-justify">
+                <p className="max-w-3xl text-pretty text-base font-medium leading-relaxed text-dark/65 sm:text-lg lg:text-xl">
                   {t.coverage}
                 </p>
               </div>

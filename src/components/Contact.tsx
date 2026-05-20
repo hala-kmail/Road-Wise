@@ -47,7 +47,7 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
   };
 
   const inputClass =
-    'w-full rounded-2xl border border-dark/[0.08] bg-white px-4 py-3.5 text-sm font-semibold text-dark shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] transition-all placeholder:text-dark/38 focus:border-primary focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary/15';
+    'w-full rounded-2xl border border-dark/[0.08] bg-white px-4 py-3.5 text-base font-semibold text-dark shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] transition-all placeholder:text-dark/38 focus:border-primary focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary/15 lg:px-5 lg:py-4 lg:text-lg';
 
   return (
     <section id="contact" className="relative overflow-hidden bg-bg-deep px-4 py-20 sm:px-6 sm:py-28">

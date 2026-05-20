@@ -78,7 +78,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
               <a 
                 key={link.href} 
                 href={link.href} 
-                className="text-label font-black uppercase tracking-widest text-dark/40 hover:text-primary transition-all relative overflow-hidden h-4 xl:h-5"
+                className="text-label font-black uppercase tracking-widest text-dark/40 hover:text-primary transition-all relative overflow-hidden min-h-[1.125rem] py-0.5 xl:text-meta"
               >
                 <span className="block group-hover:-translate-y-full transition-transform">
                   {link.name}
@@ -91,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
             <Link
               to="/blog"
               className={cn(
-                'text-label font-black uppercase tracking-widest transition-colors relative overflow-hidden h-4 xl:h-5',
+                'text-label font-black uppercase tracking-widest transition-colors relative overflow-hidden min-h-[1.125rem] py-0.5 xl:text-meta',
                 isBlog ? 'text-primary' : 'text-dark/40 hover:text-primary'
               )}
             >
