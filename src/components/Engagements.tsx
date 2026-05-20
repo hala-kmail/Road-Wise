@@ -146,7 +146,7 @@ export const Engagements: React.FC<EngagementsProps> = ({ lang }) => {
           className="overflow-hidden rounded-[1.65rem] border border-black/[0.06] bg-gradient-to-b from-white via-white to-zinc-50/90 p-5 shadow-[0_32px_90px_-50px_rgba(47,159,157,0.18),0_24px_64px_-48px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.95)] sm:rounded-[1.9rem] sm:p-7 lg:p-9"
         >
           <ul
-            className="relative m-0 grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4 lg:gap-6"
+            className="relative m-0 grid list-none grid-cols-1 items-stretch gap-4 p-0 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4 lg:gap-6"
             role="list"
           >
             {/* Root node — centered above the grid, desktop only */}
@@ -174,7 +174,7 @@ export const Engagements: React.FC<EngagementsProps> = ({ lang }) => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-12px' }}
                   transition={{ duration: 0.4, delay: idx * 0.07, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative flex min-h-0 flex-col"
+                  className="relative flex h-full min-h-0 flex-col"
                 >
                   <EngagementBranch
                     idx={idx}
@@ -183,8 +183,8 @@ export const Engagements: React.FC<EngagementsProps> = ({ lang }) => {
                     hline={tile.hline}
                   />
 
-                  <div className="flex min-h-0 flex-1 gap-3 sm:gap-4 lg:block">
-                    <div className="relative z-[1] hidden w-7 shrink-0 justify-center pt-5 max-sm:flex">
+                  <div className="flex min-h-0 flex-1 flex-col gap-3 sm:flex-row sm:gap-4 lg:block lg:min-h-0 lg:flex-1">
+                    <div className="relative z-[1] hidden w-7 shrink-0 justify-center pt-5 max-sm:flex sm:pt-0">
                       <span
                         className={cn(
                           'h-3 w-3 shrink-0 rounded-full ring-[5px] ring-white shadow-sm',
@@ -194,10 +194,10 @@ export const Engagements: React.FC<EngagementsProps> = ({ lang }) => {
                       />
                     </div>
 
-                    <div className="min-w-0 flex-1 lg:w-auto">
+                    <div className="flex min-h-[12rem] min-w-0 flex-1 flex-col sm:min-h-[13rem] lg:h-full lg:min-h-0 lg:w-auto">
                       <div
                         className={cn(
-                          'group relative flex h-full min-h-[12rem] flex-col overflow-hidden rounded-[1.2rem] border border-black/[0.06] bg-white/90 shadow-[0_14px_44px_-28px_rgba(47,159,157,0.18),0_8px_28px_-24px_rgba(0,0,0,0.07)] ring-1 ring-inset ring-white/80 transition-all duration-300 sm:min-h-[13rem] sm:rounded-[1.35rem] lg:min-h-[15rem]',
+                          'group relative flex h-full min-h-0 flex-col overflow-hidden rounded-[1.2rem] border border-black/[0.06] bg-white/90 shadow-[0_14px_44px_-28px_rgba(47,159,157,0.18),0_8px_28px_-24px_rgba(0,0,0,0.07)] ring-1 ring-inset ring-white/80 transition-all duration-300 sm:rounded-[1.35rem]',
                           'hover:-translate-y-1 hover:border-black/10 hover:shadow-[0_28px_56px_-32px_rgba(47,159,157,0.28),0_16px_40px_-28px_rgba(0,0,0,0.1)]',
                           tile.top
                         )}
@@ -213,7 +213,7 @@ export const Engagements: React.FC<EngagementsProps> = ({ lang }) => {
                           className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/90 to-transparent opacity-90"
                           aria-hidden
                         />
-                        <div className="relative flex h-full min-h-0 flex-col p-4 sm:p-5 lg:p-6">
+                        <div className="relative flex h-full min-h-0 flex-1 flex-col p-4 sm:p-5 lg:p-6">
                           <div
                             className={cn(
                               'flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-black/[0.05] ring-1 transition-all duration-300 group-hover:scale-[1.06] lg:h-12 lg:w-12',
