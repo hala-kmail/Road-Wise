@@ -126,7 +126,7 @@ export const Engagements: React.FC<EngagementsProps> = ({ lang }) => {
             viewport={{ once: true }}
             transition={{ delay: 0.05 }}
             className={cn(
-              'mx-auto mt-4 max-w-xl text-base font-semibold leading-relaxed text-dark/50 lg:text-lg',
+              'mx-auto mt-4 max-w-xl text-base font-semibold leading-relaxed text-dark/62 lg:text-lg',
               lang === 'en' && 'text-pretty'
             )}
           >
@@ -227,7 +227,7 @@ export const Engagements: React.FC<EngagementsProps> = ({ lang }) => {
                           <h3 className="mt-3 line-clamp-4 text-pretty text-card-title font-bold leading-snug tracking-tight text-dark lg:mt-3.5 lg:leading-normal">
                             {item.title}
                           </h3>
-                          <p className="mt-2 line-clamp-4 text-pretty text-card-body font-normal leading-relaxed text-dark/55 lg:mt-2.5">
+                          <p className="mt-2 line-clamp-4 text-pretty text-card-body font-normal leading-relaxed text-dark/68 lg:mt-2.5">
                             {item.desc}
                           </p>
                         </div>

@@ -84,7 +84,7 @@ export const Team: React.FC<TeamProps> = ({ lang }) => {
             >
               {t.title}
             </motion.h2>
-            <p className="text-meta font-bold uppercase tracking-[0.2em] text-dark/35 lg:text-base">{t.subtitle}</p>
+            <p className="text-meta font-bold uppercase tracking-[0.2em] text-dark/48 lg:text-base">{t.subtitle}</p>
           </div>
 
           <div className="flex shrink-0 items-center gap-2 self-stretch sm:self-auto">
@@ -177,9 +177,9 @@ export const Team: React.FC<TeamProps> = ({ lang }) => {
                 </div>
 
                 <div className="mb-5 flex flex-1 flex-col gap-3 rounded-2xl border border-black/[0.05] bg-white/50 p-3.5 lg:p-4">
-                  <div className="flex items-center justify-between gap-2 text-label font-black uppercase tracking-wider text-dark/35">
+                  <div className="flex items-center justify-between gap-2 text-label font-black uppercase tracking-wider text-dark/48">
                     <span>{lang === 'en' ? 'Expertise' : 'الخبرة'}</span>
-                    <span className="tabular-nums text-body-sm text-dark/55">{member.exp}</span>
+                    <span className="tabular-nums text-body-sm text-dark/68">{member.exp}</span>
                   </div>
                   <span className="inline-flex w-fit max-w-full rounded-lg border border-primary/10 bg-primary/[0.06] px-2.5 py-1.5 text-label font-black uppercase tracking-wide text-primary/90 lg:px-3 lg:text-meta">
                     {member.specialty}
@@ -190,14 +190,14 @@ export const Team: React.FC<TeamProps> = ({ lang }) => {
                   <div className="flex gap-2">
                     <a
                       href="#"
-                      className="flex h-9 w-9 items-center justify-center rounded-xl border border-black/[0.06] bg-white/90 text-dark/40 transition-all hover:border-primary/25 hover:text-primary"
+                      className="flex h-9 w-9 items-center justify-center rounded-xl border border-black/[0.06] bg-white/90 text-dark/52 transition-all hover:border-primary/25 hover:text-primary"
                       aria-label={lang === 'en' ? 'LinkedIn' : 'لينكدإن'}
                     >
                       <Linkedin className="h-3.5 w-3.5" aria-hidden />
                     </a>
                     <a
                       href="#"
-                      className="flex h-9 w-9 items-center justify-center rounded-xl border border-black/[0.06] bg-white/90 text-dark/40 transition-all hover:border-primary/25 hover:text-primary"
+                      className="flex h-9 w-9 items-center justify-center rounded-xl border border-black/[0.06] bg-white/90 text-dark/52 transition-all hover:border-primary/25 hover:text-primary"
                       aria-label={lang === 'en' ? 'Email' : 'البريد'}
                     >
                       <Mail className="h-3.5 w-3.5" aria-hidden />
@@ -212,7 +212,7 @@ export const Team: React.FC<TeamProps> = ({ lang }) => {
       </div>
 
       <div className="mx-auto mt-10 max-w-7xl px-4 pb-10 sm:px-6">
-        <p className="text-center text-label font-bold uppercase tracking-widest text-dark/25 lg:text-meta">{t.disclaimer}</p>
+        <p className="text-center text-label font-bold uppercase tracking-widest text-dark/38 lg:text-meta">{t.disclaimer}</p>
       </div>
     </section>
   );

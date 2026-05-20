@@ -47,7 +47,7 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
   };
 
   const inputClass =
-    'w-full rounded-2xl border border-dark/[0.08] bg-white px-4 py-3.5 text-base font-semibold text-dark shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] transition-all placeholder:text-dark/38 focus:border-primary focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary/15 lg:px-5 lg:py-4 lg:text-lg';
+    'w-full rounded-2xl border border-dark/[0.08] bg-white px-4 py-3.5 text-base font-semibold text-dark shadow-[inset_0_1px_0_rgba(255,255,255,0.85)] transition-all placeholder:text-dark/50 focus:border-primary focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary/15 lg:px-5 lg:py-4 lg:text-lg';
 
   return (
     <section id="contact" className="relative overflow-hidden bg-bg-deep px-4 py-20 sm:px-6 sm:py-28">
@@ -97,7 +97,7 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="mt-4 text-base font-medium leading-relaxed text-dark/65 md:text-lg"
+            className="mt-4 text-base font-medium leading-relaxed text-dark/78 md:text-lg"
           >
             {t.subtitle}
           </motion.p>
@@ -215,7 +215,7 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
                 <div className="mb-6 flex items-start justify-between gap-4">
                   <div>
                     <h3 className="text-lg font-black text-dark md:text-xl">{t.formHeading}</h3>
-                    <p className="mt-2 flex items-center gap-2.5 text-sm font-medium leading-relaxed text-dark/55 sm:text-base lg:text-body-sm">
+                    <p className="mt-2 flex items-center gap-2.5 text-sm font-medium leading-relaxed text-dark/68 sm:text-base lg:text-body-sm">
                     
                       {t.emailFormHint}
                     </p>

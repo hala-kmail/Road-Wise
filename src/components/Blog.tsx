@@ -71,7 +71,7 @@ export function Blog() {
         >
           <Link
             to="/"
-            className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/90 px-4 py-2 text-meta font-black uppercase tracking-[0.2em] text-dark/45 shadow-sm backdrop-blur-sm transition-colors hover:border-primary/30 hover:text-primary"
+            className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/90 px-4 py-2 text-meta font-black uppercase tracking-[0.2em] text-dark/58 shadow-sm backdrop-blur-sm transition-colors hover:border-primary/30 hover:text-primary"
           >
             <ArrowLeft className={cn('h-3.5 w-3.5 shrink-0', isRtl && 'rotate-180')} aria-hidden />
             {isRtl ? 'الرئيسية' : 'Home'}
@@ -93,7 +93,7 @@ export function Blog() {
               {isRtl ? 'المدونة' : 'Our blog'}
             </span>
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-pretty text-base font-medium leading-relaxed text-dark/58 sm:text-lg lg:mx-0">
+          <p className="mx-auto mt-4 max-w-xl text-pretty text-base font-medium leading-relaxed text-dark/70 sm:text-lg lg:mx-0">
             {isRtl
               ? 'مقالات حول الاستشارات، التطوير المؤسسي، وبناء القدرات — من فريق رودوايز.'
               : 'Articles on consulting, institutional development, and capacity building — from the Road Wise team.'}
@@ -109,7 +109,7 @@ export function Blog() {
 
         {error ? (
           <div className="rounded-2xl border border-black/[0.07] bg-white/90 px-6 py-16 text-center shadow-[0_24px_60px_-40px_rgba(0,0,0,0.12)] backdrop-blur-sm">
-            <p className="text-base font-medium text-dark/55">{error}</p>
+            <p className="text-base font-medium text-dark/68">{error}</p>
             <Link
               to="/"
               className="mt-6 inline-flex text-sm font-black uppercase tracking-widest text-primary hover:text-primary-light"
@@ -134,7 +134,7 @@ export function Blog() {
               <BookOpen className="h-7 w-7 text-primary" aria-hidden />
             </div>
             <p className="text-lg font-black text-dark">{isRtl ? 'لا توجد مقالات بعد' : 'No posts yet'}</p>
-            <p className="text-sm font-medium leading-relaxed text-dark/45">
+            <p className="text-sm font-medium leading-relaxed text-dark/58">
               {isRtl
                 ? 'ستظهر المقالات هنا بعد نشرها من لوحة Strapi.'
                 : 'Articles will show here once they are published from Strapi.'}

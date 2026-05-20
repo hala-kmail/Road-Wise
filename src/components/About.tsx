@@ -105,7 +105,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
                     {lang === 'en' ? 'Geographic Coverage' : 'التغطية الجغرافية'}
                   </span>
                 </div>
-                <p className="max-w-3xl text-pretty text-base font-medium leading-relaxed text-dark/65 sm:text-lg lg:text-xl">
+                <p className="max-w-3xl text-pretty text-base font-medium leading-relaxed text-dark/78 sm:text-lg lg:text-xl">
                   {t.coverage}
                 </p>
               </div>
@@ -163,7 +163,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
                           </p>
                         </div>
                       </div>
-                      <p className="-ms-px border-s-[3px] border-primary/20 ps-3.5 text-xs font-medium leading-relaxed text-dark/58 sm:text-body-sm">
+                      <p className="-ms-px border-s-[3px] border-primary/20 ps-3.5 text-xs font-medium leading-relaxed text-dark/70 sm:text-body-sm">
                         {activeLeader.bio}
                       </p>
                     </motion.article>
@@ -205,7 +205,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
                           goPrev();
                         }
                       }}
-                      className="flex h-9 w-9 items-center justify-center rounded-lg text-dark/45 transition-colors hover:bg-white hover:text-primary"
+                      className="flex h-9 w-9 items-center justify-center rounded-lg text-dark/58 transition-colors hover:bg-white hover:text-primary"
                       aria-label={lang === 'en' ? 'Previous leader' : 'السابق'}
                     >
                       <ChevronLeft className={cn('h-5 w-5', rtl && 'scale-x-[-1]')} aria-hidden />
@@ -219,7 +219,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
                           goNext();
                         }
                       }}
-                      className="flex h-9 w-9 items-center justify-center rounded-lg text-dark/45 transition-colors hover:bg-white hover:text-primary"
+                      className="flex h-9 w-9 items-center justify-center rounded-lg text-dark/58 transition-colors hover:bg-white hover:text-primary"
                       aria-label={lang === 'en' ? 'Next leader' : 'التالي'}
                     >
                       <ChevronRight className={cn('h-5 w-5', rtl && 'scale-x-[-1]')} aria-hidden />
@@ -233,7 +233,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
           {/* شركاء */}
           <div className="border-t border-dark/12 px-6 py-8 sm:px-10 sm:py-10">
             <div className="mb-5 flex items-center justify-between gap-4">
-              <p className="text-label-sm font-black uppercase tracking-[0.28em] text-dark/38">
+              <p className="text-label-sm font-black uppercase tracking-[0.28em] text-dark/50">
                 {lang === 'en' ? 'Institutional Network' : 'الشبكة المؤسسية'}
               </p>
               <div className="flex items-center gap-1.5">

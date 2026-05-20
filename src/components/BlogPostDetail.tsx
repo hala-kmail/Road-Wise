@@ -243,7 +243,7 @@ export function BlogPostDetail() {
   if (notFound || !post) {
     return (
       <div className="min-h-screen bg-bg-deep pt-20 pb-20 flex flex-col items-center justify-center gap-5 sm:pt-24">
-        <p className="text-dark/35 text-2xl font-black tracking-tight">Article not found</p>
+        <p className="text-dark/48 text-2xl font-black tracking-tight">Article not found</p>
         <Link
           to="/blog"
           className="inline-flex items-center gap-2 text-sm font-black text-primary/70 hover:text-primary transition-colors"
@@ -294,7 +294,7 @@ export function BlogPostDetail() {
           >
             <Link
               to="/blog"
-              className="inline-flex items-center gap-2 text-meta font-black uppercase tracking-widest text-dark/30 hover:text-primary transition-colors group"
+              className="inline-flex items-center gap-2 text-meta font-black uppercase tracking-widest text-dark/42 hover:text-primary transition-colors group"
             >
               <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
               Blog
@@ -334,7 +334,7 @@ export function BlogPostDetail() {
             className="flex flex-wrap items-center gap-5 mb-10 pb-8 border-b border-black/8"
           >
             {post.author && (
-              <span className="flex items-center gap-2.5 text-sm text-dark/45 font-medium">
+              <span className="flex items-center gap-2.5 text-sm text-dark/58 font-medium">
                 <span className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-primary-light flex items-center justify-center shrink-0">
                   <User className="w-3.5 h-3.5 text-white" />
                 </span>
@@ -342,7 +342,7 @@ export function BlogPostDetail() {
               </span>
             )}
             {post.publishedAt && (
-              <span className="flex items-center gap-2 text-sm text-dark/35">
+              <span className="flex items-center gap-2 text-sm text-dark/48">
                 <Calendar className="w-4 h-4" />
                 {formatDate(post.publishedAt)}
               </span>
@@ -351,7 +351,7 @@ export function BlogPostDetail() {
 
           {/* Excerpt / lead */}
           {post.excerpt && (
-            <p className="text-lg sm:text-xl text-dark/55 leading-relaxed mb-10 font-medium">
+            <p className="text-lg sm:text-xl text-dark/68 leading-relaxed mb-10 font-medium">
               {post.excerpt}
             </p>
           )}

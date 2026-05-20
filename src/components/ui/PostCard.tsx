@@ -74,7 +74,7 @@ export function PostCard({ post }: PostCardProps) {
 
         {/* Excerpt — ارتفاع محجوز لثلاث أسطر حتى بدون نص */}
         <div className="min-h-[4.75rem] flex-1 sm:min-h-[5.25rem]">
-          <p className="line-clamp-3 text-sm leading-relaxed text-dark/50">
+          <p className="line-clamp-3 text-sm leading-relaxed text-dark/62">
             {post.excerpt?.trim() ? post.excerpt : '\u00a0'}
           </p>
         </div>
@@ -82,14 +82,14 @@ export function PostCard({ post }: PostCardProps) {
         {/* Footer */}
         <div className="mt-auto flex shrink-0 items-center gap-3 border-t border-black/[0.07] pt-3">
           {post.author && (
-            <span className="flex items-center gap-1.5 text-xs text-dark/35 font-medium min-w-0 flex-1">
-              <User className="w-3.5 h-3.5 shrink-0 text-dark/25" />
+            <span className="flex items-center gap-1.5 text-xs text-dark/48 font-medium min-w-0 flex-1">
+              <User className="w-3.5 h-3.5 shrink-0 text-dark/38" />
               <span className="truncate">{post.author}</span>
             </span>
           )}
           {post.publishedAt && (
-            <span className="flex items-center gap-1.5 text-xs text-dark/35 font-medium shrink-0 ml-auto">
-              <Calendar className="w-3.5 h-3.5 text-dark/25" />
+            <span className="flex items-center gap-1.5 text-xs text-dark/48 font-medium shrink-0 ml-auto">
+              <Calendar className="w-3.5 h-3.5 text-dark/38" />
               {formatDate(post.publishedAt)}
             </span>
           )}

@@ -40,7 +40,7 @@ export const Approach: React.FC<ApproachProps> = ({ lang }) => {
                <h2 className="text-heading-section font-black mb-6 tracking-tighter leading-none text-dark">
                  {t.title}
                </h2>
-               <p className="text-base text-dark/50 leading-relaxed font-bold mb-8 md:text-lg xl:text-xl">
+               <p className="text-base text-dark/62 leading-relaxed font-bold mb-8 md:text-lg xl:text-xl">
                  {lang === 'en' 
                    ? "Our methodology is rooted in Asset-Based Community Development (ABCD), focusing on local strengths rather than just needs." 
                    : "تتجذر منهجيتنا في تطوير المجتمع القائم على الأصول (ABCD)، مع التركيز على نقاط القوة المحلية بدلاً من الاحتياجات فقط."}

@@ -183,7 +183,7 @@
 
 /* Blog rich-text content */
 .blog-prose {
-  color: rgb(53 53 53 / 0.72);
+  color: rgb(53 53 53 / 0.82);
   line-height: 1.75;
   font-size: clamp(0.9375rem, 0.9rem + 0.12vw, 1.0625rem);
 }
@@ -213,7 +213,7 @@
   border-left: 4px solid var(--color-primary);
   padding: 0.25rem 0 0.25rem 1.25rem;
   font-style: italic;
-  color: rgb(53 53 53 / 0.55);
+  color: rgb(53 53 53 / 0.65);
   margin: 1.75rem 0;
 }
 .blog-prose img { border-radius: 1rem; max-width: 100%; margin: 1.5rem 0; }

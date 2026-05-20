@@ -39,7 +39,7 @@ export const Clients: React.FC<ClientsProps> = ({ lang }) => {
         >
           {t.title}
         </motion.h2>
-        <p className="text-label font-bold uppercase tracking-[0.22em] text-dark/35">
+        <p className="text-label font-bold uppercase tracking-[0.22em] text-dark/48">
           {lang === 'en' ? 'Our Strategic Global Partners' : 'شركاؤنا الاستراتيجيون العالميون'}
         </p>
       </div>
