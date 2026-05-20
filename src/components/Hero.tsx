@@ -165,7 +165,7 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
                 transition={{ delay: 0.08 }}
                 className="mb-8 flex flex-wrap items-center gap-x-4 gap-y-2"
               >
-                <span className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/[0.06] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-primary">
+                <span className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-primary/[0.06] px-3 py-1.5 text-label font-bold uppercase tracking-[0.22em] text-primary">
                   <span className="relative flex h-1.5 w-1.5">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/35 opacity-75" />
                     <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
@@ -186,7 +186,7 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
                           duration: 0.55,
                           ease: [0.22, 1, 0.36, 1],
                         }}
-                        className="block text-4xl font-black leading-[1.05] tracking-tight text-dark sm:text-5xl md:text-6xl lg:text-[3.35rem] xl:text-7xl"
+                        className="block text-display font-black leading-[1.05] tracking-tight text-dark"
                       >
                         {word}
                       </motion.span>
@@ -214,13 +214,13 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
                 <div className="flex flex-wrap items-center gap-3 sm:gap-4">
                   <a
                     href="#services"
-                    className="inline-flex items-center justify-center rounded-xl bg-primary px-8 py-3.5 text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-md shadow-primary/25 transition-transform hover:scale-[1.02] hover:bg-primary-light active:scale-[0.98] sm:px-10 sm:py-4"
+                    className="inline-flex items-center justify-center rounded-xl bg-primary px-8 py-3.5 text-label font-black uppercase tracking-[0.2em] text-white shadow-md shadow-primary/25 transition-transform hover:scale-[1.02] hover:bg-primary-light active:scale-[0.98] sm:px-10 sm:py-4"
                   >
                     {t.cta1}
                   </a>
                   <a
                     href="#contact"
-                    className="inline-flex items-center gap-2 rounded-xl border border-dark/10 bg-white px-7 py-3.5 text-[10px] font-black uppercase tracking-[0.18em] text-dark/70 transition-colors hover:border-primary/30 hover:text-dark sm:px-9 sm:py-4"
+                    className="inline-flex items-center gap-2 rounded-xl border border-dark/10 bg-white px-7 py-3.5 text-label font-black uppercase tracking-[0.18em] text-dark/70 transition-colors hover:border-primary/30 hover:text-dark sm:px-9 sm:py-4"
                   >
                     {t.cta2}
                     <span className="h-1.5 w-1.5 rounded-full bg-accent-yellow ring-2 ring-accent-yellow/25" />
@@ -248,7 +248,7 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
             {/* كاروسيل */}
             <div className="group relative flex min-h-[280px] flex-col bg-zinc-950 lg:min-h-0">
               <div className="absolute start-5 top-5 z-20 sm:start-6 sm:top-6">
-                <span className="rounded-md bg-black/45 px-2 py-1 font-mono text-[10px] font-medium tabular-nums text-white/80 backdrop-blur-sm">
+                <span className="rounded-md bg-black/45 px-2 py-1 font-mono text-label font-medium tabular-nums text-white/80 backdrop-blur-sm">
                   {slideCurrent}/{slideTotal}
                 </span>
               </div>
@@ -284,10 +284,10 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
                         <div className="relative z-[2] flex h-full flex-col justify-end px-6 pb-2 sm:px-8">
                           <div className="mb-3 flex flex-wrap items-center gap-2">
-                            <span className="rounded-md bg-white/15 px-2.5 py-1 text-[8px] font-black uppercase tracking-wider text-white backdrop-blur-md">
+                            <span className="rounded-md bg-white/15 px-2.5 py-1 text-label-sm font-black uppercase tracking-wider text-white backdrop-blur-md">
                               {item.category}
                             </span>
-                            <span className="text-[10px] font-semibold tabular-nums text-white/50">{item.date}</span>
+                            <span className="text-label font-semibold tabular-nums text-white/50">{item.date}</span>
                           </div>
                           <h2 className="max-w-lg text-pretty text-xl font-black leading-snug text-white transition-colors group-hover:text-primary-light sm:text-2xl">
                             {item.title}
@@ -305,10 +305,10 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
                         <div className="absolute inset-x-0 bottom-[5.25rem] z-[1] px-6 sm:px-8">
                           <div className="mb-3 flex flex-wrap items-center gap-2">
-                            <span className="rounded-md bg-white/15 px-2.5 py-1 text-[8px] font-black uppercase tracking-wider text-white backdrop-blur-md">
+                            <span className="rounded-md bg-white/15 px-2.5 py-1 text-label-sm font-black uppercase tracking-wider text-white backdrop-blur-md">
                               {item.category}
                             </span>
-                            <span className="text-[10px] font-semibold tabular-nums text-white/50">{item.date}</span>
+                            <span className="text-label font-semibold tabular-nums text-white/50">{item.date}</span>
                           </div>
                           <h2 className="max-w-lg text-pretty text-xl font-black leading-snug text-white sm:text-2xl">
                             {item.title}
@@ -355,18 +355,18 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
             className="px-6 py-8 md:flex-1 md:px-8 md:py-10 lg:px-10"
           >
             <div className="mb-3 flex items-center justify-between">
-              <span className="text-[10px] font-black uppercase tracking-widest text-dark/35">
+              <span className="text-label font-black uppercase tracking-widest text-dark/35">
                 {lang === 'en' ? 'Impact' : 'الأثر'}
               </span>
-              <span className="rounded-md bg-accent-blue/10 px-2 py-0.5 text-[8px] font-black text-accent-blue">
+              <span className="rounded-md bg-accent-blue/10 px-2 py-0.5 text-label-sm font-black text-accent-blue">
                 {lang === 'en' ? 'VERIFIED' : 'موثّق'}
               </span>
             </div>
-            <p className="mb-1 text-4xl font-black tracking-tighter text-dark">
+            <p className="mb-1 text-stat font-black tracking-tighter text-dark">
               {t.stats[0].prefix}
               {t.stats[0].value}
             </p>
-            <p className="text-xs font-bold text-dark/45">{t.stats[0].label}</p>
+            <p className="text-meta font-bold text-dark/45">{t.stats[0].label}</p>
             <div className="mt-5 flex gap-1.5">
               {[1, 2, 3, 4, 5].map((i) => (
                 <div key={i} className="h-1 flex-1 overflow-hidden rounded-full bg-accent-blue/10">
@@ -387,11 +387,11 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
                 <Sprout className="h-5 w-5" aria-hidden />
               </div>
               <div className="min-w-0">
-                <p className="text-[10px] font-black uppercase leading-none text-dark/35">{t.stats[1].label}</p>
+                <p className="text-label font-black uppercase leading-none text-dark/35">{t.stats[1].label}</p>
                 <p className="mt-1 text-xl font-black tracking-tight text-dark">{t.stats[1].value}</p>
               </div>
             </div>
-            <p className="text-[11px] font-medium italic leading-relaxed text-dark/45">
+            <p className="text-meta font-medium italic leading-relaxed text-dark/45">
               {lang === 'en'
                 ? 'Consistently delivering high-quality advisory services.'
                 : 'تقديم خدمات استشارية عالية الجودة باستمرار.'}

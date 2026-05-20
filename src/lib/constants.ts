@@ -134,7 +134,7 @@ export const content = {
         "Reach our teams in Palestine and Jordan. Share a short brief and we will follow up as soon as we can.",
       formHeading: "Send a message",
       emailFormHint:
-        "Submit the form and your message is emailed to our team from our site server (SMTP).",
+        "Share your message below — it goes straight to our team and we'll get back to you as soon as we can.",
       formSending: "Sending…",
       formSuccess: "Thank you — we have received your message.",
       formError: "Could not send. Try again or email us directly.",
@@ -299,7 +299,7 @@ export const content = {
         "تواصل مع فرقنا في فلسطين والأردن. اكتب لنا موجزاً عن احتياجكم وسنعود إليكم في أقرب وقت.",
       formHeading: "أرسل رسالة",
       emailFormHint:
-        "أرسل النموذج لتصل رسالتكم إلى فريقنا عبر خادم الموقع (SMTP).",
+        "شاركنا رسالتك أدناه — تصل مباشرةً إلى فريقنا وسنعود إليكم في أقرب وقت ممكن.",
       formSending: "جاري الإرسال…",
       formSuccess: "شكراً — تم استلام رسالتكم.",
       formError: "تعذر الإرسال. أعد المحاولة أو راسلونا مباشرة بالبريد.",

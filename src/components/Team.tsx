@@ -80,11 +80,11 @@ export const Team: React.FC<TeamProps> = ({ lang }) => {
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mb-2 text-4xl font-black leading-[1.05] tracking-tighter text-dark md:text-5xl"
+              className="mb-2 text-heading-section font-black leading-[1.05] tracking-tighter text-dark"
             >
               {t.title}
             </motion.h2>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-dark/35">{t.subtitle}</p>
+            <p className="text-meta font-bold uppercase tracking-[0.2em] text-dark/35 lg:text-base">{t.subtitle}</p>
           </div>
 
           <div className="flex shrink-0 items-center gap-2 self-stretch sm:self-auto">
@@ -148,8 +148,8 @@ export const Team: React.FC<TeamProps> = ({ lang }) => {
                 transition={{ delay: idx * 0.04, duration: 0.45 }}
                 dir={lang === 'ar' ? 'rtl' : 'ltr'}
                 className={cn(
-                  'group relative flex min-h-[340px] w-[min(100%,280px)] shrink-0 snap-center flex-col sm:min-h-[360px] sm:w-[300px]',
-                  'rounded-[1.75rem] border border-white/55 bg-white/65 p-6 shadow-[0_20px_50px_-28px_rgba(47,159,157,0.12)] backdrop-blur-xl',
+                  'group relative flex min-h-[340px] w-[min(100%,280px)] shrink-0 snap-center flex-col sm:min-h-[360px] sm:w-[300px] lg:w-[340px] xl:w-[360px]',
+                  'rounded-[1.75rem] border border-white/55 bg-white/65 p-6 shadow-[0_20px_50px_-28px_rgba(47,159,157,0.12)] backdrop-blur-xl lg:p-7',
                   'ring-1 ring-black/[0.03] transition-all duration-300',
                   'hover:-translate-y-1 hover:border-primary/20 hover:bg-white/85 hover:shadow-[0_28px_60px_-24px_rgba(47,159,157,0.18)]'
                 )}
@@ -162,26 +162,26 @@ export const Team: React.FC<TeamProps> = ({ lang }) => {
                 <div className="mb-5 flex flex-col items-center text-center">
                   <div
                     className={cn(
-                      'mb-4 flex h-[4.25rem] w-[4.25rem] items-center justify-center rounded-2xl text-lg font-black tracking-tight text-white ring-2 ring-white/40 transition-transform duration-300 group-hover:scale-[1.04]',
+                      'mb-4 flex h-[4.25rem] w-[4.25rem] items-center justify-center rounded-2xl text-xl font-black tracking-tight text-white ring-2 ring-white/40 transition-transform duration-300 group-hover:scale-[1.04] lg:h-[4.75rem] lg:w-[4.75rem] lg:text-2xl',
                       avatarTone(idx)
                     )}
                   >
                     {member.initials}
                   </div>
-                  <h3 className="text-balance text-base font-black leading-tight text-dark sm:text-lg">
+                  <h3 className="text-balance text-lg font-black leading-tight text-dark lg:text-xl">
                     {member.name}
                   </h3>
-                  <p className="mt-2 line-clamp-2 text-pretty text-[11px] font-semibold leading-snug text-primary/90 sm:text-xs">
+                  <p className="mt-2 line-clamp-2 text-pretty text-card-body font-semibold leading-snug text-primary/90">
                     {member.title}
                   </p>
                 </div>
 
-                <div className="mb-5 flex flex-1 flex-col gap-3 rounded-2xl border border-black/[0.05] bg-white/50 p-3.5">
-                  <div className="flex items-center justify-between gap-2 text-[9px] font-black uppercase tracking-wider text-dark/35">
+                <div className="mb-5 flex flex-1 flex-col gap-3 rounded-2xl border border-black/[0.05] bg-white/50 p-3.5 lg:p-4">
+                  <div className="flex items-center justify-between gap-2 text-label font-black uppercase tracking-wider text-dark/35">
                     <span>{lang === 'en' ? 'Expertise' : 'الخبرة'}</span>
-                    <span className="tabular-nums text-dark/55">{member.exp}</span>
+                    <span className="tabular-nums text-body-sm text-dark/55">{member.exp}</span>
                   </div>
-                  <span className="inline-flex w-fit max-w-full rounded-lg border border-primary/10 bg-primary/[0.06] px-2.5 py-1 text-[9px] font-black uppercase tracking-wide text-primary/90">
+                  <span className="inline-flex w-fit max-w-full rounded-lg border border-primary/10 bg-primary/[0.06] px-2.5 py-1.5 text-label font-black uppercase tracking-wide text-primary/90 lg:px-3 lg:text-meta">
                     {member.specialty}
                   </span>
                 </div>
@@ -212,7 +212,7 @@ export const Team: React.FC<TeamProps> = ({ lang }) => {
       </div>
 
       <div className="mx-auto mt-10 max-w-7xl px-4 pb-10 sm:px-6">
-        <p className="text-center text-[9px] font-bold uppercase tracking-widest text-dark/25">{t.disclaimer}</p>
+        <p className="text-center text-label font-bold uppercase tracking-widest text-dark/25 lg:text-meta">{t.disclaimer}</p>
       </div>
     </section>
   );

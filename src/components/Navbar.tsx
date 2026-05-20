@@ -68,7 +68,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
             />
             <div className="min-w-0 flex-1">
               <h3 className="font-black text-base sm:text-lg md:text-2xl tracking-tighter leading-tight text-dark truncate">{t.site.wordmarkLine1}</h3>
-              <p className={cn('text-[9px] sm:text-[10px] font-black text-dark/30 tracking-wide sm:tracking-[0.3em] truncate', lang === 'en' && 'uppercase')}>{t.site.wordmarkLine2}</p>
+              <p className={cn('text-label-sm sm:text-label font-black text-dark/30 tracking-wide sm:tracking-[0.3em] truncate', lang === 'en' && 'uppercase')}>{t.site.wordmarkLine2}</p>
             </div>
           </a>
 
@@ -78,12 +78,12 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
               <a 
                 key={link.href} 
                 href={link.href} 
-                className="text-[10px] font-black uppercase tracking-widest text-dark/40 hover:text-primary transition-all relative overflow-hidden h-4"
+                className="text-label font-black uppercase tracking-widest text-dark/40 hover:text-primary transition-all relative overflow-hidden h-4 xl:h-5"
               >
                 <span className="block group-hover:-translate-y-full transition-transform">
                   {link.name}
                 </span>
-                <span className="block absolute top-full left-0 group-hover:-translate-y-full transition-transform text-primary text-[10px]">
+                <span className="block absolute top-full left-0 group-hover:-translate-y-full transition-transform text-primary text-label">
                   {link.name}
                 </span>
               </a>
@@ -91,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
             <Link
               to="/blog"
               className={cn(
-                'text-[10px] font-black uppercase tracking-widest transition-colors relative overflow-hidden h-4',
+                'text-label font-black uppercase tracking-widest transition-colors relative overflow-hidden h-4 xl:h-5',
                 isBlog ? 'text-primary' : 'text-dark/40 hover:text-primary'
               )}
             >
@@ -103,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
             <button
               type="button"
               onClick={() => setLang(lang === 'en' ? 'ar' : 'en')}
-              className="px-3 py-1.5 bg-dark text-white rounded-lg text-[10px] font-black uppercase tracking-widest hover:bg-primary transition-colors flex items-center gap-2"
+              className="px-3 py-1.5 bg-dark text-white rounded-lg text-label font-black uppercase tracking-widest hover:bg-primary transition-colors flex items-center gap-2"
             >
               <Globe className="w-3 h-3" />
               {lang === 'en' ? 'AR' : 'EN'}

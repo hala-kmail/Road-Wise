@@ -59,7 +59,7 @@ export function PostCard({ post }: PostCardProps) {
             {post.categories.map((cat) => (
               <span
                 key={cat}
-                className="rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider text-primary"
+                className="rounded-full bg-primary/10 px-2.5 py-0.5 text-label font-black uppercase tracking-wider text-primary"
               >
                 {cat}
               </span>

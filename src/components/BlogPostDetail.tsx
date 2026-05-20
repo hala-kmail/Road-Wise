@@ -151,7 +151,7 @@ function BlockRenderer({ block }: { block: StrapiBlock }) {
       return (
         <blockquote className="relative my-8 pl-6 border-l-4 border-primary py-1">
           {block.title && (
-            <p className="text-[10px] font-black text-primary uppercase tracking-widest mb-2">
+            <p className="text-label font-black text-primary uppercase tracking-widest mb-2">
               {block.title}
             </p>
           )}
@@ -294,7 +294,7 @@ export function BlogPostDetail() {
           >
             <Link
               to="/blog"
-              className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-dark/30 hover:text-primary transition-colors group"
+              className="inline-flex items-center gap-2 text-meta font-black uppercase tracking-widest text-dark/30 hover:text-primary transition-colors group"
             >
               <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform" />
               Blog
@@ -307,7 +307,7 @@ export function BlogPostDetail() {
               {post.categories.map((cat) => (
                 <span
                   key={cat}
-                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-black uppercase tracking-wider"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-label font-black uppercase tracking-wider"
                 >
                   <Tag className="w-3 h-3" />
                   {cat}
@@ -321,7 +321,7 @@ export function BlogPostDetail() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-black text-dark tracking-tighter leading-tight mb-6"
+            className="text-heading-section font-black text-dark tracking-tighter leading-tight mb-6"
           >
             {post.title}
           </motion.h1>

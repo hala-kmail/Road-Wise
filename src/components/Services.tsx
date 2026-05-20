@@ -60,11 +60,11 @@ export const Services: React.FC<ServicesProps> = ({ lang }) => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="mb-4 text-4xl font-black leading-none tracking-tighter text-white md:text-5xl"
+              className="mb-4 text-heading-section font-black leading-none tracking-tighter text-white"
             >
               {t.portfolioTitle}
             </motion.h2>
-            <p className="text-sm font-bold uppercase tracking-widest text-white/45">{t.title}</p>
+            <p className="text-meta font-bold uppercase tracking-widest text-white/45">{t.title}</p>
           </div>
           <div className="hidden h-1 w-32 rounded-full bg-white/15 md:block" aria-hidden />
         </div>
@@ -93,13 +93,13 @@ export const Services: React.FC<ServicesProps> = ({ lang }) => {
                   >
                     <Icon className="h-6 w-6" aria-hidden />
                   </div>
-                  <span className="rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-[8px] font-black uppercase tracking-[0.2em] text-white/45">
+                  <span className="rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-label-sm font-black uppercase tracking-[0.2em] text-white/45">
                     {t.categoryLabel} {idx + 1}
                   </span>
                 </div>
 
-                <h3 className="mb-2 text-lg font-black leading-tight text-white">{service.title}</h3>
-                <p className="mb-6 flex-1 text-xs font-medium leading-relaxed text-white/55">{service.desc}</p>
+                <h3 className="mb-2 text-lg font-black leading-tight text-white lg:text-xl">{service.title}</h3>
+                <p className="mb-6 flex-1 text-meta font-medium leading-relaxed text-white/55 lg:text-body-sm">{service.desc}</p>
 
                 <div className="mt-auto flex items-center justify-between py-2">
                   <div className="flex gap-1">
@@ -113,7 +113,7 @@ export const Services: React.FC<ServicesProps> = ({ lang }) => {
                   </div>
                   <button
                     type="button"
-                    className="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-primary-light transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"
+                    className="flex items-center gap-2 text-label-sm font-black uppercase tracking-widest text-primary-light transition-transform group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5"
                   >
                     {t.detailsCta}
                     <span className="flex h-3 w-3 items-center justify-center rounded-full border border-primary-light/60">

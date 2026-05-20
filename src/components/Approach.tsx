@@ -36,11 +36,11 @@ export const Approach: React.FC<ApproachProps> = ({ lang }) => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-secondary mb-4 block">{lang === 'en' ? 'Methodology' : 'المنهجية'}</span>
-               <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tighter leading-none text-dark">
+               <span className="text-label font-black uppercase tracking-[0.4em] text-secondary mb-4 block">{lang === 'en' ? 'Methodology' : 'المنهجية'}</span>
+               <h2 className="text-heading-section font-black mb-6 tracking-tighter leading-none text-dark">
                  {t.title}
                </h2>
-               <p className="text-base text-dark/50 leading-relaxed font-bold mb-8">
+               <p className="text-base text-dark/50 leading-relaxed font-bold mb-8 md:text-lg xl:text-xl">
                  {lang === 'en' 
                    ? "Our methodology is rooted in Asset-Based Community Development (ABCD), focusing on local strengths rather than just needs." 
                    : "تتجذر منهجيتنا في تطوير المجتمع القائم على الأصول (ABCD)، مع التركيز على نقاط القوة المحلية بدلاً من الاحتياجات فقط."}
@@ -67,8 +67,8 @@ export const Approach: React.FC<ApproachProps> = ({ lang }) => {
                   <Icon className="w-5 h-5" strokeWidth={2} />
                 </div>
                 <div>
-                   <span className="text-[8px] font-black text-secondary/40 uppercase mb-1 block">{lang === 'en' ? `Phase 0${idx+1}` : `المرحلة 0${idx+1}`}</span>
-                   <h3 className="font-black text-sm text-dark leading-tight">{tag}</h3>
+                   <span className="text-label-sm font-black text-secondary/40 uppercase mb-1 block">{lang === 'en' ? `Phase 0${idx+1}` : `المرحلة 0${idx+1}`}</span>
+                   <h3 className="font-black text-body-sm text-dark leading-tight lg:text-base">{tag}</h3>
                 </div>
               </motion.div>
             );

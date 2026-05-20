@@ -26,7 +26,7 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
               />
               <div>
                  <h3 className="text-2xl font-black leading-none tracking-tighter text-white">{t.site.wordmarkLine1}</h3>
-                 <p className={cn('text-[10px] font-black tracking-[0.3em] text-white/45', lang === 'en' && 'uppercase')}>{t.site.wordmarkLine2}</p>
+                 <p className={cn('text-label font-black tracking-[0.3em] text-white/45', lang === 'en' && 'uppercase')}>{t.site.wordmarkLine2}</p>
               </div>
             </div>
             <p className="mb-10 max-w-xs text-sm font-medium leading-relaxed text-white/55">
@@ -65,11 +65,11 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
             </h4>
             <ul className="space-y-6 text-sm font-medium text-white/65">
               <li className="flex flex-col gap-1">
-                <span className="text-[10px] font-black uppercase tracking-widest text-white/35">{lang === 'en' ? 'Main Office' : 'المكتب الرئيسي'}</span>
+                <span className="text-label font-black uppercase tracking-widest text-white/35">{lang === 'en' ? 'Main Office' : 'المكتب الرئيسي'}</span>
                 <span className="font-bold text-white/90">{t.contact.palestine.phone}</span>
               </li>
               <li className="flex flex-col gap-1">
-                <span className="text-[10px] font-black uppercase tracking-widest text-white/35">{lang === 'en' ? 'Regional Office' : 'المكتب الإقليمي'}</span>
+                <span className="text-label font-black uppercase tracking-widest text-white/35">{lang === 'en' ? 'Regional Office' : 'المكتب الإقليمي'}</span>
                 <span className="font-bold text-white/90">{t.contact.jordan.phone1}</span>
               </li>
               <li className="pt-2">
@@ -95,12 +95,12 @@ export const Footer: React.FC<FooterProps> = ({ lang }) => {
         </div>
 
         <div className="flex flex-col items-center justify-between gap-8 border-t border-white/10 pt-16 md:flex-row">
-          <p className="text-center text-[10px] font-black uppercase tracking-[0.3em] text-white/35 md:text-start">
+          <p className="text-center text-label font-black uppercase tracking-[0.3em] text-white/35 md:text-start">
             {t.footer.rights}
           </p>
           <div className="flex gap-8">
-             <a href="#" className="text-[10px] font-black uppercase tracking-widest text-white/35 transition-colors hover:text-white">{lang === 'en' ? 'Privacy Policy' : 'سياسة الخصوصية'}</a>
-             <a href="#" className="text-[10px] font-black uppercase tracking-widest text-white/35 transition-colors hover:text-white">{lang === 'en' ? 'Terms of Service' : 'شروط الخدمة'}</a>
+             <a href="#" className="text-label font-black uppercase tracking-widest text-white/35 transition-colors hover:text-white">{lang === 'en' ? 'Privacy Policy' : 'سياسة الخصوصية'}</a>
+             <a href="#" className="text-label font-black uppercase tracking-widest text-white/35 transition-colors hover:text-white">{lang === 'en' ? 'Terms of Service' : 'شروط الخدمة'}</a>
           </div>
         </div>
       </div>

@@ -40,7 +40,7 @@ export const VisionMission: React.FC<VisionMissionProps> = ({ lang }) => {
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-3 font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-dark/40"
+            className="mb-3 font-mono text-label font-semibold uppercase tracking-[0.32em] text-dark/40"
           >
             {t.eyebrow}
           </motion.p>
@@ -50,7 +50,7 @@ export const VisionMission: React.FC<VisionMissionProps> = ({ lang }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.03 }}
-            className="text-4xl font-black tracking-tighter text-dark md:text-5xl"
+            className="text-heading-section font-black tracking-tighter text-dark"
           >
             {t.sectionTitle}
           </motion.h2>

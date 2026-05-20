@@ -35,11 +35,11 @@ export const Clients: React.FC<ClientsProps> = ({ lang }) => {
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-3 text-4xl font-black tracking-tighter text-dark md:text-5xl"
+          className="mb-3 text-heading-section font-black tracking-tighter text-dark"
         >
           {t.title}
         </motion.h2>
-        <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-dark/35">
+        <p className="text-label font-bold uppercase tracking-[0.22em] text-dark/35">
           {lang === 'en' ? 'Our Strategic Global Partners' : 'شركاؤنا الاستراتيجيون العالميون'}
         </p>
       </div>

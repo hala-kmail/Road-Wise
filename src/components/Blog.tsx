@@ -71,7 +71,7 @@ export function Blog() {
         >
           <Link
             to="/"
-            className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/90 px-4 py-2 text-[11px] font-black uppercase tracking-[0.2em] text-dark/45 shadow-sm backdrop-blur-sm transition-colors hover:border-primary/30 hover:text-primary"
+            className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white/90 px-4 py-2 text-meta font-black uppercase tracking-[0.2em] text-dark/45 shadow-sm backdrop-blur-sm transition-colors hover:border-primary/30 hover:text-primary"
           >
             <ArrowLeft className={cn('h-3.5 w-3.5 shrink-0', isRtl && 'rotate-180')} aria-hidden />
             {isRtl ? 'الرئيسية' : 'Home'}
@@ -84,11 +84,11 @@ export function Blog() {
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="mb-14 text-center lg:mb-16 lg:text-start"
         >
-          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/85 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-primary shadow-sm backdrop-blur-sm">
+          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/85 px-4 py-1.5 text-meta font-bold uppercase tracking-[0.22em] text-primary shadow-sm backdrop-blur-sm">
             <Sparkles className="h-3.5 w-3.5 text-accent-yellow" aria-hidden />
             {isRtl ? 'رؤى وتحديثات' : 'Insights & updates'}
           </span>
-          <h1 className="text-4xl font-black tracking-tight text-dark sm:text-5xl md:text-6xl lg:text-[3.35rem]">
+          <h1 className="text-display font-black tracking-tight text-dark">
             <span className="bg-gradient-to-br from-dark via-dark to-primary bg-clip-text text-transparent">
               {isRtl ? 'المدونة' : 'Our blog'}
             </span>
@@ -141,7 +141,7 @@ export function Blog() {
             </p>
             <Link
               to="/"
-              className="mt-2 inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-[11px] font-black uppercase tracking-widest text-white shadow-md shadow-primary/25 transition-transform hover:scale-[1.02] active:scale-[0.98]"
+              className="mt-2 inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-meta font-black uppercase tracking-widest text-white shadow-md shadow-primary/25 transition-transform hover:scale-[1.02] active:scale-[0.98]"
             >
               {isRtl ? 'الرئيسية' : 'Home'}
             </Link>

@@ -67,7 +67,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-block text-4xl font-black tracking-tighter text-dark md:text-5xl lg:text-6xl"
+            className="inline-block text-heading-section font-black tracking-tighter text-dark"
           >
             {t.title}
           </motion.h2>
@@ -92,7 +92,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
               <h3 className="mb-4 text-xs font-black uppercase tracking-[0.2em] text-primary">
                 {lang === 'en' ? 'Our Foundation' : 'أساسنا'}
               </h3>
-              <p className="max-w-3xl text-pretty text-lg font-semibold leading-[1.75] text-dark/88 md:text-xl text-justify">
+              <p className="max-w-3xl text-pretty text-lg font-semibold leading-[1.75] text-dark/88 md:text-xl lg:text-2xl text-justify">
                 {t.description}
               </p>
 
@@ -101,7 +101,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/[0.08] text-primary">
                     <Globe className="h-4 w-4" aria-hidden />
                   </div>
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary">
+                  <span className="text-label font-black uppercase tracking-[0.2em] text-primary">
                     {lang === 'en' ? 'Geographic Coverage' : 'التغطية الجغرافية'}
                   </span>
                 </div>
@@ -129,7 +129,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
               />
 
               <div className={cn('relative', rtl ? 'pl-10' : 'pr-10')}>
-                <h4 className="mb-6 text-[10px] font-black uppercase tracking-[0.22em] text-primary">
+                <h4 className="mb-6 text-label font-black uppercase tracking-[0.22em] text-primary">
                   {lang === 'en' ? 'Leadership' : 'القيادة'}
                 </h4>
 
@@ -158,12 +158,12 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
                         </div>
                         <div className={cn('flex min-w-0 flex-1 flex-col justify-center', rtl ? 'text-right' : '')}>
                           <p className="mb-1.5 text-lg font-black leading-snug text-dark sm:text-xl">{activeLeader.name}</p>
-                          <p className="text-[10px] font-bold uppercase tracking-widest text-primary/85 sm:text-[11px]">
+                          <p className="text-label font-bold uppercase tracking-widest text-primary/85 sm:text-meta">
                             {activeLeader.role}
                           </p>
                         </div>
                       </div>
-                      <p className="-ms-px border-s-[3px] border-primary/20 ps-3.5 text-xs font-medium leading-relaxed text-dark/58 sm:text-[13px]">
+                      <p className="-ms-px border-s-[3px] border-primary/20 ps-3.5 text-xs font-medium leading-relaxed text-dark/58 sm:text-body-sm">
                         {activeLeader.bio}
                       </p>
                     </motion.article>
@@ -233,7 +233,7 @@ export const About: React.FC<AboutProps> = ({ lang }) => {
           {/* شركاء */}
           <div className="border-t border-dark/12 px-6 py-8 sm:px-10 sm:py-10">
             <div className="mb-5 flex items-center justify-between gap-4">
-              <p className="text-[9px] font-black uppercase tracking-[0.28em] text-dark/38">
+              <p className="text-label-sm font-black uppercase tracking-[0.28em] text-dark/38">
                 {lang === 'en' ? 'Institutional Network' : 'الشبكة المؤسسية'}
               </p>
               <div className="flex items-center gap-1.5">

@@ -24,13 +24,24 @@
   --color-bg-elevated: #ffffff;
 
   --font-sans: "Tajawal", ui-sans-serif, system-ui, sans-serif;
+
+  /* Fluid type scale — grows on large viewports, stays readable on mobile */
+  --text-label-sm: clamp(0.5625rem, 0.5rem + 0.2vw, 0.75rem);
+  --text-label: clamp(0.625rem, 0.55rem + 0.24vw, 0.8125rem);
+  --text-meta: clamp(0.75rem, 0.65rem + 0.35vw, 1rem);
+  --text-body-sm: clamp(0.875rem, 0.78rem + 0.4vw, 1.125rem);
+  --text-card-title: clamp(1.0625rem, 0.9rem + 0.65vw, 1.5rem);
+  --text-card-body: clamp(0.9375rem, 0.8rem + 0.5vw, 1.25rem);
+  --text-heading-section: clamp(2.25rem, 1.5rem + 2.75vw, 4rem);
+  --text-display: clamp(2.25rem, 1.15rem + 3.8vw, 4.75rem);
+  --text-stat: clamp(2rem, 1.5rem + 2.2vw, 3.5rem);
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
     font-family: var(--font-sans);
-    /* font-size: 111.11%; */
+    font-size: clamp(1rem, 0.92rem + 0.42vw, 1.25rem);
   }
   body {
     @apply bg-bg-deep text-dark selection:bg-accent-yellow/22 selection:text-dark overflow-x-hidden;
@@ -145,7 +156,11 @@
 }
 
 /* Blog rich-text content */
-.blog-prose { color: rgb(53 53 53 / 0.72); line-height: 1.8; }
+.blog-prose {
+  color: rgb(53 53 53 / 0.72);
+  line-height: 1.8;
+  font-size: clamp(0.9375rem, 0.875rem + 0.25vw, 1.0625rem);
+}
 .blog-prose h1, .blog-prose h2, .blog-prose h3, .blog-prose h4, .blog-prose h5 {
   font-weight: 900;
   color: #353535;
@@ -154,10 +169,10 @@
   margin-top: 2.25rem;
   letter-spacing: -0.025em;
 }
-.blog-prose h1 { font-size: 1.875rem; }
-.blog-prose h2 { font-size: 1.5rem; }
-.blog-prose h3 { font-size: 1.25rem; }
-.blog-prose h4 { font-size: 1.125rem; }
+.blog-prose h1 { font-size: clamp(1.75rem, 1.35rem + 1.4vw, 2.5rem); }
+.blog-prose h2 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); }
+.blog-prose h3 { font-size: clamp(1.25rem, 1.05rem + 0.65vw, 1.5rem); }
+.blog-prose h4 { font-size: clamp(1.125rem, 1rem + 0.4vw, 1.25rem); }
 .blog-prose p { margin-bottom: 1.25rem; }
 .blog-prose a { color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
 .blog-prose a:hover { color: var(--color-primary-light); }
@@ -181,7 +196,7 @@
   padding: 1.25rem;
   overflow-x: auto;
   margin: 1.5rem 0;
-  font-size: 0.875rem;
+  font-size: clamp(0.8125rem, 0.75rem + 0.2vw, 0.9375rem);
 }
 .blog-prose code {
   font-family: ui-monospace, monospace;

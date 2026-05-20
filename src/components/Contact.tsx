@@ -76,7 +76,7 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
             initial={{ opacity: 0, y: 8 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/80 px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.22em] text-primary shadow-sm backdrop-blur-sm"
+            className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white/80 px-4 py-1.5 text-meta font-bold uppercase tracking-[0.22em] text-primary shadow-sm backdrop-blur-sm"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_10px_var(--color-primary)]" aria-hidden />
             {t.eyebrow}
@@ -86,7 +86,7 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.05 }}
-            className="text-4xl font-black tracking-tight text-dark md:text-5xl lg:text-[3.25rem]"
+            className="text-display font-black tracking-tight text-dark"
           >
             <span className="bg-gradient-to-br from-dark via-dark to-primary bg-clip-text text-transparent">
               {t.title}
@@ -131,19 +131,19 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
               <div className="hero-noise absolute inset-0 rounded-[inherit]" aria-hidden />
 
               <div className="relative">
-                <p className="mb-8 font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-white/50">
+                <p className="mb-8 font-mono text-label font-semibold uppercase tracking-[0.3em] text-white/50">
                   {lang === 'en' ? 'Offices' : 'المكاتب'}
                 </p>
 
                 <div className="space-y-6">
                   <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] p-5 ring-1 ring-white/[0.04] transition-all duration-300 hover:border-primary/35 hover:bg-white/[0.09] hover:shadow-[0_0_0_1px_color-mix(in_srgb,var(--color-primary)_28%,transparent),0_20px_50px_-28px_rgba(0,0,0,0.45)]">
                     <div className="absolute start-0 top-0 h-full w-1 rounded-s-2xl bg-gradient-to-b from-primary-light to-primary opacity-90" aria-hidden />
-                    <p className="mb-4 text-[10px] font-black uppercase tracking-[0.2em] text-white/45">{t.palestine.title}</p>
+                    <p className="mb-4 text-label font-black uppercase tracking-[0.2em] text-white/45">{t.palestine.title}</p>
                     <div className="flex gap-3">
                       <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/15 ring-1 ring-primary/25">
                         <MapPin className="h-4 w-4 text-primary-light" aria-hidden />
                       </span>
-                      <p className="text-sm font-semibold leading-relaxed text-white/92">{t.palestine.address}</p>
+                      <p className="text-sm font-semibold leading-relaxed text-white/92 lg:text-base">{t.palestine.address}</p>
                     </div>
                     <div className="mt-4 flex flex-col gap-2.5 border-t border-white/10 pt-4 ps-[3.25rem]">
                       <a
@@ -165,12 +165,12 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
 
                   <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.06] p-5 ring-1 ring-white/[0.04] transition-all duration-300 hover:border-accent-yellow/40 hover:bg-white/[0.09] hover:shadow-[0_0_0_1px_color-mix(in_srgb,var(--color-accent-yellow)_35%,transparent),0_20px_50px_-28px_rgba(0,0,0,0.45)]">
                     <div className="absolute start-0 top-0 h-full w-1 rounded-s-2xl bg-gradient-to-b from-accent-yellow to-amber-500 opacity-95" aria-hidden />
-                    <p className="mb-4 text-[10px] font-black uppercase tracking-[0.2em] text-white/45">{t.jordan.title}</p>
+                    <p className="mb-4 text-label font-black uppercase tracking-[0.2em] text-white/45">{t.jordan.title}</p>
                     <div className="flex gap-3">
                       <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent-yellow/15 ring-1 ring-accent-yellow/30">
                         <MapPin className="h-4 w-4 text-accent-yellow" aria-hidden />
                       </span>
-                      <p className="text-sm font-semibold leading-relaxed text-white/92">{t.jordan.address}</p>
+                      <p className="text-sm font-semibold leading-relaxed text-white/92 lg:text-base">{t.jordan.address}</p>
                     </div>
                     <div className="mt-4 flex flex-col gap-2.5 border-t border-white/10 pt-4 ps-[3.25rem]">
                       <a
@@ -215,8 +215,8 @@ export const Contact: React.FC<ContactProps> = ({ lang }) => {
                 <div className="mb-6 flex items-start justify-between gap-4">
                   <div>
                     <h3 className="text-lg font-black text-dark md:text-xl">{t.formHeading}</h3>
-                    <p className="mt-1.5 flex items-center gap-2 text-xs font-semibold text-dark/50">
-                      <Mail className="h-3.5 w-3.5 shrink-0 text-primary" aria-hidden />
+                    <p className="mt-2 flex items-center gap-2.5 text-sm font-medium leading-relaxed text-dark/55 sm:text-base lg:text-body-sm">
+                    
                       {t.emailFormHint}
                     </p>
                   </div>
