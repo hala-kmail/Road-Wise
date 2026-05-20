@@ -175,9 +175,9 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
               </motion.div>
 
               <div className="mb-8 sm:mb-10">
-                <h1 className="flex flex-wrap gap-x-3 gap-y-1 sm:gap-x-3.5">
+                <h1 className="flex max-w-full flex-wrap gap-x-3 gap-y-1 sm:gap-x-3.5">
                   {words.map((word, idx) => (
-                    <span key={idx} className="overflow-hidden py-0.5">
+                    <span key={idx} className="overflow-hidden py-1">
                       <motion.span
                         initial={{ y: '100%' }}
                         animate={{ y: 0 }}
@@ -186,7 +186,7 @@ export const Hero: React.FC<HeroProps> = ({ lang }) => {
                           duration: 0.55,
                           ease: [0.22, 1, 0.36, 1],
                         }}
-                        className="block text-display font-black leading-[1.05] tracking-tight text-dark"
+                        className="block text-display font-black leading-[1.12] tracking-tight text-dark"
                       >
                         {word}
                       </motion.span>

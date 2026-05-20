@@ -224,10 +224,10 @@ export const Engagements: React.FC<EngagementsProps> = ({ lang }) => {
                           >
                             <Icon className="h-5 w-5" strokeWidth={2} />
                           </div>
-                          <h3 className="mt-3 line-clamp-4 text-pretty text-base font-bold leading-snug tracking-tight text-dark sm:text-lg lg:mt-3.5 lg:leading-normal">
+                          <h3 className="mt-3 line-clamp-4 text-pretty text-card-title font-bold leading-snug tracking-tight text-dark lg:mt-3.5 lg:leading-normal">
                             {item.title}
                           </h3>
-                          <p className="mt-2 line-clamp-4 text-pretty text-sm font-normal leading-relaxed text-dark/55 sm:text-base lg:mt-2.5 lg:text-lg lg:leading-relaxed">
+                          <p className="mt-2 line-clamp-4 text-pretty text-card-body font-normal leading-relaxed text-dark/55 lg:mt-2.5">
                             {item.desc}
                           </p>
                         </div>
